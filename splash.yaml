@@ -1,0 +1,17 @@
+flutter_native_splash:
+  color: "#F6F6F6"
+  color_dark: "#272727"
+  image: assets/splash/wastemate_splash_logo.png
+  image_dark: assets/splash/wastemate_splash_logo.png
+  branding: assets/splash/wastemate_splash_branding.png
+  branding_dark: assets/splash/wastemate_splash_branding.png
+
+  android_12:
+    color: "#F6F6F6"
+    color_dark: "#272727"
+    image: assets/splash/wastemate_splash_logo.png
+    image_dark: assets/splash/wastemate_splash_logo.png
+    branding: assets/splash/wastemate_splash_branding.png
+    branding_dark: assets/splash/wastemate_splash_branding.png
+
+  web: false

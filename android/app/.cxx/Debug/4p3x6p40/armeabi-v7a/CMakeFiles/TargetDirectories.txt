@@ -1,0 +1,2 @@
+E:/Mgodongf/trash_management/android/app/.cxx/Debug/4p3x6p40/armeabi-v7a/CMakeFiles/edit_cache.dir
+E:/Mgodongf/trash_management/android/app/.cxx/Debug/4p3x6p40/armeabi-v7a/CMakeFiles/rebuild_cache.dir
