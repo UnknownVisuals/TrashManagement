@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trash_management/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:trash_management/features/trash_management/screens/home/widgets/home_appbar.dart';
+import 'package:trash_management/utils/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   HomeAppBar(),
+                  SizedBox(height: REYSizes.spaceBtwSections)
                 ],
               ),
             ),

@@ -14,31 +14,28 @@ class REYPrimaryHeaderContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return REYCurvedEdgesWidget(
-      child: SizedBox(
-        height: 400,
-        child: Container(
-          color: REYColors.primary,
-          // if size.isFinite: is not true in Stack
-          child: Stack(
-            children: [
-              // Background Shapes
-              Positioned(
-                top: -100,
-                right: -250,
-                child: REYCircularContainer(
-                  backgroundColor: REYColors.white.withValues(alpha: 0.2),
-                ),
+      child: Container(
+        color: REYColors.primary,
+        // if size.isFinite: is not true in Stack
+        child: Stack(
+          children: [
+            // Background Shapes
+            Positioned(
+              top: -100,
+              right: -250,
+              child: REYCircularContainer(
+                backgroundColor: REYColors.white.withValues(alpha: 0.2),
               ),
-              Positioned(
-                top: 100,
-                right: -200,
-                child: REYCircularContainer(
-                  backgroundColor: REYColors.white.withValues(alpha: 0.2),
-                ),
+            ),
+            Positioned(
+              top: 100,
+              right: -200,
+              child: REYCircularContainer(
+                backgroundColor: REYColors.white.withValues(alpha: 0.2),
               ),
-              child,
-            ],
-          ),
+            ),
+            child,
+          ],
         ),
       ),
     );

@@ -1,12 +1,12 @@
 /// This class contains all the App Text in String formats.
 class REYTexts {
   // -- GLOBAL Texts
-  static const String and = "and";
-  static const String skip = "Skip";
-  static const String done = "Done";
-  static const String submit = "Submit";
-  static const String appName = "T-Store";
-  static const String rContinue = "Continue";
+  static const String and = "dan";
+  static const String skip = "Lewati";
+  static const String done = "Selesai";
+  static const String submit = "Kirim";
+  static const String appName = "Sobat Sampah";
+  static const String rContinue = "Lanjutkan";
 
   // -- OnBoarding Texts
   static const String onBoardingTitle1 =
@@ -22,51 +22,48 @@ class REYTexts {
       "Tukarkan poin dengan barang-barang menarik yang kamu inginkan.";
 
   // -- Authentication Forms
-  static const String firstName = "First Name";
-  static const String lastName = "Last Name";
-  static const String email = "E-Mail";
-  static const String password = "Password";
-  static const String newPassword = "New Password";
-  static const String username = "Username";
-  static const String phoneNo = "Phone Number";
-  static const String rememberMe = "Remember Me";
-  static const String forgetPassword = "Forget Password?";
-  static const String signIn = "Sign In";
-  static const String createAccount = "Create Account";
-  static const String orSignInWith = "or sign in with";
-  static const String orSignUpWith = "or sign up with";
-  static const String iAgreeTo = "I agree to";
-  static const String privacyPolicy = "Privacy Policy";
-  static const String termsOfUse = "Terms of use";
-  static const String verificationCode = "verificationCode";
-  static const String resendEmail = "Resend Email";
-  static const String resendEmailIn = "Resend email in";
+  static const String firstName = "Nama Depan";
+  static const String lastName = "Nama Belakang";
+  static const String email = "Email";
+  static const String password = "Kata Sandi";
+  static const String newPassword = "Kata Sandi Baru";
+  static const String username = "Nama Pengguna";
+  static const String phoneNo = "Nomor Telepon";
+  static const String rememberMe = "Ingat Saya";
+  static const String forgetPassword = "Lupa Kata Sandi?";
+  static const String signIn = "Masuk";
+  static const String createAccount = "Buat Akun";
+  static const String orSignInWith = "atau masuk dengan";
+  static const String orSignUpWith = "atau daftar dengan";
+  static const String iAgreeTo = "Saya setuju dengan";
+  static const String privacyPolicy = "Kebijakan Privasi";
+  static const String termsOfUse = "Syarat Penggunaan";
+  static const String verificationCode = "Kode Verifikasi";
+  static const String resendEmail = "Kirim Ulang Email";
+  static const String resendEmailIn = "Kirim ulang email dalam";
 
   // -- Authentication Headings
-  static const String loginTitle = "Welcome back,";
+  static const String loginTitle = "Selamat datang kembali,";
   static const String loginSubTitle =
-      "Discover Limitless Choices and Unmatched Convenience.";
-  static const String signupTitle = "Let's create your account";
-  static const String forgetPasswordTitle = "Forget password";
+      "Kumpulkan dan tukarkan sampahmu menjadi uang!";
+  static const String signupTitle = "Mari buat akun Anda";
+  static const String forgetPasswordTitle = "Lupa kata sandi";
   static const String forgetPasswordSubTitle =
-      "Don't worry sometimes people can forget too, enter your email and we will send you a password reset link.";
-  static const String changeYourPasswordTitle = "Password Reset Email Sent";
+      "Jangan khawatir, kadang orang bisa lupa juga, masukkan email Anda dan kami akan mengirimkan tautan reset kata sandi.";
+  static const String changeYourPasswordTitle =
+      "Email Reset Kata Sandi Terkirim";
   static const String changeYourPasswordSubTitle =
-      "Your Account Security is Our Priority! We've Sent You a Secure Link to Safely Change Your Password and Keep Your Account Protected.";
-  static const String confirmEmail = "Verify your email address!";
+      "Keamanan Akun Anda adalah Prioritas Kami! Kami Telah Mengirimkan Tautan Aman untuk Mengubah Kata Sandi Anda dan Melindungi Akun Anda.";
+  static const String confirmEmail = "Verifikasi alamat email Anda!";
   static const String confirmEmailSubTitle =
-      "Congratulations! Your Account Awaits: Verify Your Email to Start Shopping and Experience a World of Unrivaled Deals and Personalized Offers.";
+      "Selamat! Akun Anda Menunggu: Verifikasi Email Anda untuk Mulai Berbelanja dan Nikmati Penawaran Tak Tertandingi serta Penawaran yang Dipersonalisasi.";
   static const String emailNotReceivedMessage =
-      "Didn't get the email? Check your junk/spam or resend it.";
-  static const String yourAccountCreatedTitle =
-      "Your account successfully created!";
+      "Tidak menerima email? Periksa folder sampah/spam atau kirim ulang.";
+  static const String yourAccountCreatedTitle = "Akun Anda berhasil dibuat!";
   static const String yourAccountCreatedSubTitle =
-      "Welcome to Your Ultimate Shopping Destination: Your Account is Created, Unleash the Joy of Seamless Online Shopping!";
-
-  // -- Product
-  static const String popularProducts = "Popular Products";
+      "Selamat Datang di Destinasi Belanja Utama Anda: Akun Anda Telah Dibuat, Nikmati Kegembiraan Belanja Online yang Lancar!";
 
   // -- Home
-  static const String homeAppbarTitle = "Good day for shopping";
-  static const String homeAppbarSubTitle = "Taimoor Sikander";
+  static const String homeAppbarTitle = "Sampahmu, uangmu!";
+  static const String homeAppbarSubTitle = "Reynaldhi T. Graha";
 }
