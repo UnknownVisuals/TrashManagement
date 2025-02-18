@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:trash_management/features/personalization/screens/profile/profile.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/image_strings.dart';
 
@@ -27,7 +29,7 @@ class REYUserProfileTile extends StatelessWidget {
             .apply(color: REYColors.white),
       ),
       trailing: IconButton(
-        onPressed: () {},
+        onPressed: () => Get.to(const ProfileScreen()),
         icon: const Icon(Iconsax.edit, color: REYColors.white),
       ),
     );

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/device/device_utility.dart';
+import 'package:trash_management/utils/helpers/helper_functions.dart';
 
 class REYAppBar extends StatelessWidget implements PreferredSizeWidget {
   const REYAppBar({
@@ -11,7 +13,7 @@ class REYAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.leadingIcon,
     this.leadingOnPressed,
-    this.showBackArrow = true,
+    this.showBackArrow = false,
   });
 
   final Widget? title;
@@ -22,6 +24,8 @@ class REYAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dark = REYHelperFunctions.isDarkMode(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: REYSizes.md),
       child: AppBar(
@@ -29,7 +33,10 @@ class REYAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: showBackArrow
             ? IconButton(
                 onPressed: () => Get.back(),
-                icon: const Icon(Iconsax.arrow_left),
+                icon: Icon(
+                  Iconsax.arrow_left,
+                  color: dark ? REYColors.white : REYColors.white,
+                ),
               )
             : leadingIcon != null
                 ? IconButton(
