@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: REYSizes.spaceBtwSections),
 
               // Personal Info
-              const REYSectionHeading(title: 'Informasi personal'),
+              const REYSectionHeading(title: 'Informasi pribadi'),
               const SizedBox(height: REYSizes.spaceBtwItems),
 
               ProfileMenu(
@@ -79,8 +79,28 @@ class ProfileScreen extends StatelessWidget {
                 onPressed: () {},
               ),
               ProfileMenu(
-                title: 'Alamat',
-                value: 'Sukabirus, Citereup, Bojongsoang',
+                title: 'RT',
+                value: '003',
+                onPressed: () {},
+              ),
+              ProfileMenu(
+                title: 'RW',
+                value: '006',
+                onPressed: () {},
+              ),
+              ProfileMenu(
+                title: 'Desa',
+                value: 'Citereup',
+                onPressed: () {},
+              ),
+              ProfileMenu(
+                title: 'Kecamatan',
+                value: 'Dayeuhkolot',
+                onPressed: () {},
+              ),
+              ProfileMenu(
+                title: 'Kabupaten/Kota',
+                value: 'Kabupaten Bandung',
                 onPressed: () {},
               ),
             ],

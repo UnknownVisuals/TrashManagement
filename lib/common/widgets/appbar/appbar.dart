@@ -35,7 +35,7 @@ class REYAppBar extends StatelessWidget implements PreferredSizeWidget {
                 onPressed: () => Get.back(),
                 icon: Icon(
                   Iconsax.arrow_left,
-                  color: dark ? REYColors.white : REYColors.white,
+                  color: dark ? REYColors.white : REYColors.black,
                 ),
               )
             : leadingIcon != null

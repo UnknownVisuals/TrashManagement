@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:trash_management/common/widgets/appbar/appbar.dart';
 import 'package:trash_management/common/widgets/custom_shapes/containers/primary_header_container.dart';
@@ -7,12 +8,15 @@ import 'package:trash_management/common/widgets/list_tiles/user_profile_tile.dar
 import 'package:trash_management/common/widgets/section_heading.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
+import 'package:trash_management/utils/local_storage/theme_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -26,7 +30,10 @@ class SettingsScreen extends StatelessWidget {
                     showBackArrow: false,
                     title: Text(
                       'Akun',
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium!
+                          .copyWith(color: REYColors.white),
                     ),
                   ),
 
@@ -71,16 +78,23 @@ class SettingsScreen extends StatelessWidget {
                     showActionButton: false,
                   ),
                   const SizedBox(height: REYSizes.spaceBtwItems),
-                  REYSettingsMenuTile(
-                    icon: Iconsax.moon,
-                    title: 'Mode Gelap',
-                    subTitle: 'Sesuaikan tampilan dengan cahaya sekitar',
-                    trailing: Switch(
-                      value: true,
-                      onChanged: (value) {},
-                      activeColor: REYColors.primary,
-                    ),
-                  ),
+                  Obx(() {
+                    bool isDark = themeController.isDarkMode.value;
+
+                    return REYSettingsMenuTile(
+                      icon: Iconsax.moon,
+                      title: 'Mode Gelap',
+                      subTitle: 'Sesuaikan tampilan dengan cahaya sekitar',
+                      trailing: Switch(
+                        value: isDark,
+                        onChanged: (value) {
+                          themeController.toggleTheme(value);
+                        },
+                        activeColor: REYColors.primary,
+                      ),
+                    );
+                  }),
+
                   const SizedBox(height: REYSizes.spaceBtwSections * 2),
 
                   // Logout Button
