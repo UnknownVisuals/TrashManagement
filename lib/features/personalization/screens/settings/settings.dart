@@ -105,7 +105,6 @@ class SettingsScreen extends StatelessWidget {
                       child: const Text('Logout'),
                     ),
                   ),
-                  const SizedBox(height: REYSizes.spaceBtwSections * 2),
                 ],
               ),
             ),
