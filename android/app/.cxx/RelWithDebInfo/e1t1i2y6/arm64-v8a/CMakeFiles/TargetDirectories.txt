@@ -1,0 +1,2 @@
+E:/Mgodongf/trash_management/android/app/.cxx/RelWithDebInfo/e1t1i2y6/arm64-v8a/CMakeFiles/edit_cache.dir
+E:/Mgodongf/trash_management/android/app/.cxx/RelWithDebInfo/e1t1i2y6/arm64-v8a/CMakeFiles/rebuild_cache.dir

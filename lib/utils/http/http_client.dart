@@ -2,8 +2,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class REYHttpHelper {
-  static const String _baseUrl =
-      'http://62.72.13.119:3001/api'; // Replace with your API base URL
+  // Default API base URL
+  static String _baseUrl = 'http://62.72.13.119:3001/api';
+
+  // Setter method to change the base URL
+  static void setBaseUrl(String baseUrl) {
+    _baseUrl = baseUrl;
+  }
 
   // Helper method to make a GET request
   static Future<dynamic> get(String endpoint) async {
