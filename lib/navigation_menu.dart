@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:trash_management/features/leaderboard/screens/leaderboard.dart';
+import 'package:trash_management/features/news/screens/news.dart';
 import 'package:trash_management/features/personalization/screens/settings/settings.dart';
 import 'package:trash_management/features/trash_management/screens/home/home.dart';
 import 'package:trash_management/utils/constants/colors.dart';
@@ -33,6 +35,7 @@ class NavigationMenu extends StatelessWidget {
           tabBackgroundColor: REYColors.primary.withValues(alpha: 0.1),
           tabs: const [
             GButton(icon: Iconsax.home, text: 'Beranda'),
+            GButton(icon: Iconsax.award, text: 'Peringkat'),
             GButton(icon: Iconsax.global, text: 'Berita'),
             GButton(icon: Iconsax.user, text: 'Profil'),
           ],
@@ -47,7 +50,8 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
     const HomeScreen(),
-    Container(color: Colors.green),
+    const LeaderboardScreen(),
+    const NewsScreen(),
     const SettingsScreen(),
   ];
 }
