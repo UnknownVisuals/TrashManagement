@@ -7,8 +7,14 @@ import 'package:trash_management/utils/local_storage/theme_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await dotenv.load(fileName: ".env");
+
   await GetStorage.init();
   Get.put(ThemeController());
-  runApp(const App());
+
+  final box = GetStorage();
+  bool hasSeenOnboarding = box.read('hasSeenOnboarding') ?? false;
+
+  runApp(App(hasSeenOnboarding: hasSeenOnboarding));
 }

@@ -5,7 +5,7 @@ class REYSectionHeading extends StatelessWidget {
     super.key,
     this.onPressed,
     this.textColor,
-    this.buttonTitle = 'View all',
+    this.buttonTitle = 'Lihat semua',
     required this.title,
     this.showActionButton = false,
   });

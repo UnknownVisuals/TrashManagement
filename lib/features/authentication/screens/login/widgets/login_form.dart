@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:trash_management/features/authentication/screens/password_config/forget_password.dart';
 import 'package:trash_management/features/authentication/screens/signup/signup.dart';
-import 'package:trash_management/navigation_menu.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/constants/text_strings.dart';
+import 'package:trash_management/features/authentication/controllers/login_controller.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({
@@ -14,6 +14,10 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LoginController loginController = Get.put(LoginController());
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
     return Form(
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -23,6 +27,7 @@ class LoginForm extends StatelessWidget {
           children: [
             // Email
             TextFormField(
+              controller: emailController,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.direct_right),
                 labelText: REYTexts.email,
@@ -31,11 +36,22 @@ class LoginForm extends StatelessWidget {
             const SizedBox(height: REYSizes.spaceBtwInputFields),
 
             // Password
-            TextFormField(
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.password_check),
-                labelText: REYTexts.password,
-                suffixIcon: Icon(Iconsax.eye_slash),
+            Obx(
+              () => TextFormField(
+                controller: passwordController,
+                obscureText: loginController.obscurePassword.value,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Iconsax.password_check),
+                  labelText: REYTexts.password,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      loginController.obscurePassword.value
+                          ? Iconsax.eye_slash
+                          : Iconsax.eye,
+                    ),
+                    onPressed: loginController.togglePasswordVisibility,
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: REYSizes.spaceBtwInputFields / 2),
@@ -45,11 +61,16 @@ class LoginForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Remember Me
-                Row(
-                  children: [
-                    Checkbox(value: true, onChanged: (value) {}),
-                    const Text(REYTexts.rememberMe),
-                  ],
+                Obx(
+                  () => Row(
+                    children: [
+                      Checkbox(
+                        value: loginController.rememberMe.value,
+                        onChanged: loginController.toggleRememberMe,
+                      ),
+                      const Text(REYTexts.rememberMe),
+                    ],
+                  ),
                 ),
 
                 // Forgot Password
@@ -65,7 +86,13 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () => Get.to(const NavigationMenu()),
+                onPressed: () {
+                  loginController.login(
+                    emailController.text,
+                    passwordController.text,
+                    "WARGA",
+                  );
+                },
                 child: const Text(REYTexts.signIn),
               ),
             ),
@@ -75,9 +102,7 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
-                onPressed: () {
-                  Get.to(const SignupScreen());
-                },
+                onPressed: () => Get.to(const SignupScreen()),
                 child: const Text(REYTexts.createAccount),
               ),
             ),

@@ -5,6 +5,7 @@ import 'package:trash_management/features/authentication/screens/signup/verify_e
 import 'package:trash_management/features/authentication/screens/signup/widgets/term_and_conditions.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/constants/text_strings.dart';
+import 'package:trash_management/features/authentication/controllers/signup_controller.dart';
 
 class SignupForm extends StatelessWidget {
   const SignupForm({
@@ -13,6 +14,8 @@ class SignupForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final SignupController signupController = Get.put(SignupController());
+
     return Form(
       child: Column(
         children: [
@@ -73,12 +76,22 @@ class SignupForm extends StatelessWidget {
           const SizedBox(height: REYSizes.spaceBtwInputFields),
 
           // Password
-          TextFormField(
-            expands: false,
-            decoration: const InputDecoration(
-              labelText: REYTexts.password,
-              prefixIcon: Icon(Iconsax.password_check),
-              suffixIcon: Icon(Iconsax.eye_slash),
+          Obx(
+            () => TextFormField(
+              expands: false,
+              obscureText: signupController.obscurePassword.value,
+              decoration: InputDecoration(
+                labelText: REYTexts.password,
+                prefixIcon: const Icon(Iconsax.password_check),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    signupController.obscurePassword.value
+                        ? Iconsax.eye_slash
+                        : Iconsax.eye,
+                  ),
+                  onPressed: signupController.togglePasswordVisibility,
+                ),
+              ),
             ),
           ),
           const SizedBox(height: REYSizes.spaceBtwSections),
