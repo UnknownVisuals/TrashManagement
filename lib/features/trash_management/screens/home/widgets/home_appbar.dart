@@ -7,7 +7,10 @@ import 'package:trash_management/utils/constants/text_strings.dart';
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({
     super.key,
+    required this.username,
   });
+
+  final String username;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class HomeAppBar extends StatelessWidget {
                 .apply(color: REYColors.grey),
           ),
           Text(
-            REYTexts.homeAppbarSubTitle,
+            'Hello, $username!',
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall!

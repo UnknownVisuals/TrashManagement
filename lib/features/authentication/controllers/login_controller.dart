@@ -21,7 +21,34 @@ class LoginController extends GetxController {
       if (kDebugMode) {
         print('Login successful: $response');
       }
-      Get.offAll(() => const NavigationMenu());
+      final username = response['user']['username'];
+      final userEmail = response['user']['email'];
+      final userId = response['user']['id'];
+
+      // Fetch user points from leaderboard API
+      try {
+        final leaderboardResponse = await REYHttpHelper.get('leaderboard');
+        final userPoints = leaderboardResponse
+            .firstWhere((user) => user['id'] == userId)['totalPoin'];
+        Get.offAll(
+          () => NavigationMenu(
+            userName: username,
+            userEmail: userEmail,
+            userPoints: userPoints,
+          ),
+        );
+      } catch (e) {
+        if (kDebugMode) {
+          print('Failed to load leaderboard data: $e');
+        }
+        Get.offAll(
+          () => NavigationMenu(
+            userName: username,
+            userEmail: userEmail,
+            userPoints: 0,
+          ),
+        );
+      }
     } catch (e) {
       if (kDebugMode) {
         print('Login failed: $e');

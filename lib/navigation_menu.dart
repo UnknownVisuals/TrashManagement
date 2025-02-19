@@ -10,11 +10,26 @@ import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/helpers/helper_functions.dart';
 
 class NavigationMenu extends StatelessWidget {
-  const NavigationMenu({super.key});
+  final String userName;
+  final String userEmail;
+  final int userPoints;
+
+  const NavigationMenu({
+    super.key,
+    required this.userName,
+    required this.userEmail,
+    required this.userPoints,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NavigationController());
+    final controller = Get.put(
+      NavigationController(
+        userName: userName,
+        userEmail: userEmail,
+        userPoints: userPoints,
+      ),
+    );
     final dark = REYHelperFunctions.isDarkMode(context);
 
     return Scaffold(
@@ -53,10 +68,21 @@ class NavigationMenu extends StatelessWidget {
 
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
-  final screens = [
-    const HomeScreen(),
-    const LeaderboardScreen(),
-    const NewsScreen(),
-    const SettingsScreen(),
-  ];
+  final String userName;
+  final String userEmail;
+  final int userPoints;
+  late final List<Widget> screens;
+
+  NavigationController({
+    required this.userName,
+    required this.userEmail,
+    required this.userPoints,
+  }) {
+    screens = [
+      HomeScreen(username: userName, userPoints: userPoints),
+      const LeaderboardScreen(),
+      const NewsScreen(),
+      SettingsScreen(userName: userName, userEmail: userEmail),
+    ];
+  }
 }

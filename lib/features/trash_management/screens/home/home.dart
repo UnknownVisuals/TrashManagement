@@ -7,11 +7,15 @@ import 'package:trash_management/utils/constants/image_strings.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen(
+      {super.key, required this.username, required this.userPoints});
+
+  final String username;
+  final int userPoints;
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -19,16 +23,16 @@ class HomeScreen extends StatelessWidget {
             REYPrimaryHeaderContainer(
               child: Column(
                 children: [
-                  HomeAppBar(),
-                  SizedBox(height: REYSizes.spaceBtwSections),
-                  HomeCardPoin(poin: '1500'),
-                  SizedBox(height: REYSizes.spaceBtwSections * 2),
+                  HomeAppBar(username: username),
+                  const SizedBox(height: REYSizes.spaceBtwSections),
+                  HomeCardPoin(poin: userPoints.toString()),
+                  const SizedBox(height: REYSizes.spaceBtwSections * 2),
                 ],
               ),
             ),
 
             // Body
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(REYSizes.defaultSpace),
               child: Column(
                 children: [
