@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:trash_management/features/trash_bank/models/deposit_schedule_model.dart';
+import 'package:trash_management/features/trash_bank/models/desa_model.dart';
 
 class REYHttpHelper {
   // Default API base URL
@@ -27,16 +29,6 @@ class REYHttpHelper {
     return _handleResponse(response);
   }
 
-  // Helper method to make a login request
-  static Future<dynamic> login(Map<String, dynamic> loginData) async {
-    final response = await http.post(
-      Uri.parse('$_baseUrl/auth/login'),
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode(loginData),
-    );
-    return _handleResponse(response);
-  }
-
   // Helper method to make a PUT request
   static Future<Map<String, dynamic>> put(String endpoint, dynamic data) async {
     final response = await http.put(
@@ -59,6 +51,45 @@ class REYHttpHelper {
       return json.decode(response.body);
     } else {
       throw Exception('Failed to load data: ${response.statusCode}');
+    }
+  }
+
+  //**
+  //  CUSTOM HTTP HANDLER
+  // */
+
+  // Helper method to make a login request
+  static Future<dynamic> login(Map<String, dynamic> loginData) async {
+    final response = await http.post(
+      Uri.parse('$_baseUrl/auth/login'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(loginData),
+    );
+    return _handleResponse(response);
+  }
+
+  // Helper method to make a GET request for deposit schedule
+  static Future<List<DepositScheduleModel>> fetchDepositSchedule(
+    String desaId,
+  ) async {
+    final url = '$_baseUrl/jadwal-pengumpulan?desaId=$desaId';
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      return data.map((item) => DepositScheduleModel.fromJson(item)).toList();
+    } else {
+      throw Exception('Failed to load deposit schedule');
+    }
+  }
+
+  // Helper method to make a GET request for desa information
+  static Future<List<DesaModel>> fetchDesaInformation() async {
+    final response = await http.get(Uri.parse('$_baseUrl/desa'));
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      return data.map((item) => DesaModel.fromJson(item)).toList();
+    } else {
+      throw Exception('Failed to load desa information');
     }
   }
 }

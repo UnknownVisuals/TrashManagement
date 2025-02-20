@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:trash_management/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/device/device_utility.dart';
+import 'package:trash_management/features/trash_bank/controllers/home_controller.dart';
 
 class DepositScheduleCard extends StatelessWidget {
   const DepositScheduleCard({
     super.key,
-    required this.time,
-    required this.location,
+    required this.waktuMulai,
+    required this.waktuSelesai,
+    required this.desa,
   });
 
-  final String time, location;
+  final DateTime waktuMulai, waktuSelesai;
+  final String desa;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(HomeController());
+
+    String formattedWaktuMulai = controller.formatDateTime(waktuMulai);
+    String formattedWaktuSelesai = controller.formatDateTime(waktuSelesai);
+
     return Stack(
       children: [
         Container(
@@ -41,10 +50,10 @@ class DepositScheduleCard extends StatelessWidget {
               ),
               const SizedBox(height: REYSizes.sm),
               Text(
-                time,
+                '$formattedWaktuMulai WIB\ns/d\n$formattedWaktuSelesai WIB',
                 style: Theme.of(context)
                     .textTheme
-                    .bodyLarge!
+                    .bodyMedium!
                     .copyWith(color: REYColors.white),
               ),
               const SizedBox(height: REYSizes.sm / 2),
@@ -57,10 +66,10 @@ class DepositScheduleCard extends StatelessWidget {
                   ),
                   const SizedBox(width: REYSizes.sm / 2),
                   Text(
-                    location,
+                    desa,
                     style: Theme.of(context)
                         .textTheme
-                        .bodyLarge!
+                        .bodyMedium!
                         .copyWith(color: REYColors.white),
                   ),
                 ],
@@ -90,7 +99,7 @@ class DepositScheduleCard extends StatelessWidget {
           right: 30,
           bottom: 40,
           child: Icon(
-            Iconsax.warning_2,
+            Iconsax.clock,
             size: REYSizes.iconLg * 2,
             color: REYColors.white,
           ),

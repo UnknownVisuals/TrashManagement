@@ -10,23 +10,26 @@ import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/helpers/helper_functions.dart';
 
 class NavigationMenu extends StatelessWidget {
-  final String username;
-  final String email;
-  final int poin;
-
   const NavigationMenu({
     super.key,
-    required this.username,
+    required this.userId,
     required this.email,
+    required this.username,
+    required this.desaId,
     required this.poin,
   });
+
+  final String userId, email, username, desaId;
+  final int poin;
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(
       NavigationController(
+        userId: userId,
         username: username,
         email: email,
+        desaId: desaId,
         poin: poin,
       ),
     );
@@ -68,21 +71,40 @@ class NavigationMenu extends StatelessWidget {
 
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
-  final String username;
-  final String email;
-  final int poin;
   late final List<Widget> screens;
+  final String userId, username, email, desaId;
+  final int poin;
 
   NavigationController({
+    required this.userId,
     required this.username,
     required this.email,
+    required this.desaId,
     required this.poin,
   }) {
     screens = [
-      HomeScreen(username: username, poin: poin),
-      const LeaderboardScreen(),
+      HomeScreen(
+        userId: userId,
+        username: username,
+        email: email,
+        desaId: desaId,
+        poin: poin,
+      ),
+      LeaderboardScreen(
+        userId: userId,
+        username: username,
+        email: email,
+        desaId: desaId,
+        poin: poin,
+      ),
       const NewsScreen(),
-      SettingsScreen(username: username, email: email),
+      SettingsScreen(
+        userId: userId,
+        username: username,
+        email: email,
+        desaId: desaId,
+        poin: poin,
+      ),
     ];
   }
 }

@@ -5,9 +5,9 @@ import 'package:trash_management/navigation_menu.dart';
 import 'package:trash_management/features/authentication/models/login_model.dart';
 
 class LoginController extends GetxController {
-  var isLoading = false.obs;
   var obscurePassword = true.obs;
   var rememberMe = false.obs;
+  var isLoading = false.obs;
 
   Future<void> login(String email, String password, String role) async {
     isLoading.value = true;
@@ -17,24 +17,31 @@ class LoginController extends GetxController {
         password: password,
         role: role,
       );
+
+      // login request
       final response = await REYHttpHelper.login(loginModel.toJson());
+
+      // login response
       if (kDebugMode) {
         print('Login successful: $response');
       }
-      final username = response['user']['username'];
-      final userEmail = response['user']['email'];
-      final userId = response['user']['id'];
+      final responseUserId = response['user']['id'];
+      final responseEmail = response['user']['email'];
+      final responseUsername = response['user']['username'];
+      final responseDesaId = response['user']['desaId'];
 
       // Fetch user points from leaderboard API
       try {
         final leaderboardResponse = await REYHttpHelper.get('leaderboard');
-        final userPoints = leaderboardResponse
-            .firstWhere((user) => user['id'] == userId)['totalPoin'];
+        final poin = leaderboardResponse
+            .firstWhere((user) => user['id'] == responseUserId)['totalPoin'];
         Get.offAll(
           () => NavigationMenu(
-            username: username,
-            email: userEmail,
-            poin: userPoints,
+            userId: responseUserId,
+            username: responseUsername,
+            email: responseEmail,
+            desaId: responseDesaId,
+            poin: poin,
           ),
         );
       } catch (e) {
@@ -43,8 +50,10 @@ class LoginController extends GetxController {
         }
         Get.offAll(
           () => NavigationMenu(
-            username: username,
-            email: userEmail,
+            userId: responseUserId,
+            username: responseUsername,
+            email: responseEmail,
+            desaId: responseDesaId,
             poin: 0,
           ),
         );

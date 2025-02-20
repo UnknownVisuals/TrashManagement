@@ -4,17 +4,20 @@ import 'package:trash_management/common/widgets/section_heading.dart';
 import 'package:trash_management/features/trash_bank/screens/history/widgets/history_card.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_appbar.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_card_poin.dart';
-import 'package:trash_management/features/trash_bank/screens/home/widgets/home_carousel_incident.dart';
+import 'package:trash_management/features/trash_bank/screens/home/widgets/home_carousel_deposit.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
     super.key,
+    required this.userId,
     required this.username,
+    required this.email,
+    required this.desaId,
     required this.poin,
   });
 
-  final String username;
+  final String userId, username, email, desaId;
   final int poin;
 
   @override
@@ -30,35 +33,28 @@ class HomeScreen extends StatelessWidget {
                   HomeAppBar(username: username),
                   const SizedBox(height: REYSizes.spaceBtwSections),
                   HomeCardPoin(poin: poin.toString()),
-                  const SizedBox(height: REYSizes.spaceBtwSections * 2),
+                  const SizedBox(height: REYSizes.spaceBtwSections * 1.5),
                 ],
               ),
             ),
 
             // Body
-            const Padding(
-              padding: EdgeInsets.all(REYSizes.defaultSpace),
+            Padding(
+              padding: const EdgeInsets.all(REYSizes.defaultSpace),
               child: Column(
                 children: [
                   // Incident Carousel
-                  HomeCarouselIncident(),
+                  HomeCarouselDeposit(desaId: desaId),
 
                   // History
-                  Column(
-                    children: [
-                      REYSectionHeading(
-                        title: 'Riwayat',
-                        showActionButton: true,
-                      ),
-                      HistoryCard(
-                        date: '12 Februari 2025',
-                        name: 'Reynaldhi Tryana Graha',
-                        weight: '12',
-                        type: 'Kertas',
-                        rt: '003',
-                        rw: '006',
-                      ),
-                    ],
+                  REYSectionHeading(title: 'Riwayat', showActionButton: true),
+                  HistoryCard(
+                    date: '12 Februari 2025',
+                    name: 'Reynaldhi Tryana Graha',
+                    weight: '12',
+                    type: 'Kertas',
+                    rt: '003',
+                    rw: '006',
                   ),
                 ],
               ),
