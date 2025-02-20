@@ -1,5 +1,5 @@
-class DepositScheduleModel {
-  DepositScheduleModel({
+class ScheduleModel {
+  ScheduleModel({
     required this.id,
     required this.desaId,
     required this.hari,
@@ -10,8 +10,8 @@ class DepositScheduleModel {
   final String id, desaId, hari;
   final DateTime waktuMulai, waktuSelesai;
 
-  factory DepositScheduleModel.fromJson(Map<String, dynamic> json) {
-    return DepositScheduleModel(
+  factory ScheduleModel.fromJson(Map<String, dynamic> json) {
+    return ScheduleModel(
       id: json['id'],
       desaId: json['desaId'],
       hari: json['hari'],

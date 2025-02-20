@@ -1,13 +1,7 @@
 class DepositModel {
-  final String id;
-  final String desaId;
-  final String namaPemilik;
-  final String berat;
-  final String jenisSampah;
+  final String id, desaId, namaPemilik, berat, jenisSampah, rt, rw;
+  final DateTime waktu;
   final int poin;
-  final String waktu;
-  final String rt;
-  final String rw;
 
   DepositModel({
     required this.id,
@@ -15,10 +9,10 @@ class DepositModel {
     required this.namaPemilik,
     required this.berat,
     required this.jenisSampah,
-    required this.poin,
-    required this.waktu,
     required this.rt,
     required this.rw,
+    required this.waktu,
+    required this.poin,
   });
 
   factory DepositModel.fromJson(Map<String, dynamic> json) {
@@ -28,10 +22,10 @@ class DepositModel {
       namaPemilik: json['namaPemilik'],
       berat: json['berat'],
       jenisSampah: json['jenisSampah'],
-      poin: json['poin'],
-      waktu: json['waktu'],
-      rt: json['rt'],
       rw: json['rw'],
+      rt: json['rt'],
+      waktu: DateTime.parse(json['waktu']),
+      poin: json['poin'],
     );
   }
 }

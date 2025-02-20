@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:trash_management/features/trash_bank/models/deposit_schedule_model.dart';
+import 'package:trash_management/features/trash_bank/models/schedule_model.dart';
 import 'package:trash_management/features/trash_bank/models/desa_model.dart';
 
 class REYHttpHelper {
@@ -69,14 +69,14 @@ class REYHttpHelper {
   }
 
   // Helper method to make a GET request for deposit schedule
-  static Future<List<DepositScheduleModel>> fetchDepositSchedule(
+  static Future<List<ScheduleModel>> fetchDepositSchedule(
     String desaId,
   ) async {
     final url = '$_baseUrl/jadwal-pengumpulan?desaId=$desaId';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
-      return data.map((item) => DepositScheduleModel.fromJson(item)).toList();
+      return data.map((item) => ScheduleModel.fromJson(item)).toList();
     } else {
       throw Exception('Failed to load deposit schedule');
     }

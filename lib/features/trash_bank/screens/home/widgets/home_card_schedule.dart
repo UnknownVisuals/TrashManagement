@@ -7,8 +7,8 @@ import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/device/device_utility.dart';
 
-class DepositScheduleCard extends StatelessWidget {
-  const DepositScheduleCard({
+class ScheduleCard extends StatelessWidget {
+  const ScheduleCard({
     super.key,
     required this.waktuMulai,
     required this.waktuSelesai,

@@ -4,7 +4,7 @@ import 'package:trash_management/common/widgets/section_heading.dart';
 import 'package:trash_management/features/trash_bank/screens/history/widgets/history_card.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_appbar.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_card_poin.dart';
-import 'package:trash_management/features/trash_bank/screens/home/widgets/home_carousel_deposit.dart';
+import 'package:trash_management/features/trash_bank/screens/home/widgets/home_carousel_schedule.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -43,12 +43,13 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(REYSizes.defaultSpace),
               child: Column(
                 children: [
-                  // Incident Carousel
-                  HomeCarouselDeposit(desaId: desaId),
+                  // Schedule Carousel
+                  HomeCarouselSchedule(desaId: desaId),
 
                   // History
-                  REYSectionHeading(title: 'Riwayat', showActionButton: true),
-                  HistoryCard(
+                  const REYSectionHeading(
+                      title: 'Riwayat', showActionButton: true),
+                  const HistoryCard(
                     date: '12 Februari 2025',
                     name: 'Reynaldhi Tryana Graha',
                     weight: '12',
