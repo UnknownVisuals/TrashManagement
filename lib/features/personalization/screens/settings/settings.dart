@@ -11,13 +11,13 @@ import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/local_storage/theme_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
-  final String userName;
-  final String userEmail;
+  final String username;
+  final String email;
 
   const SettingsScreen({
     super.key,
-    required this.userName,
-    required this.userEmail,
+    required this.username,
+    required this.email,
   });
 
   @override
@@ -45,7 +45,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
 
                   // Profile Card
-                  REYUserProfileTile(userName: userName, userEmail: userEmail),
+                  REYUserProfileTile(username: username, email: email),
                   const SizedBox(height: REYSizes.spaceBtwSections),
                 ],
               ),

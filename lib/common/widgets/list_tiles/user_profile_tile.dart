@@ -8,25 +8,25 @@ import 'package:trash_management/utils/constants/image_strings.dart';
 class REYUserProfileTile extends StatelessWidget {
   const REYUserProfileTile({
     super.key,
-    required this.userName,
-    required this.userEmail,
+    required this.username,
+    required this.email,
   });
 
-  final String userName, userEmail;
+  final String username, email;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Image.asset(REYImages.user, width: 50, height: 50),
       title: Text(
-        userName,
+        username,
         style: Theme.of(context)
             .textTheme
             .headlineSmall!
             .apply(color: REYColors.white),
       ),
       subtitle: Text(
-        userEmail,
+        email,
         style: Theme.of(context)
             .textTheme
             .bodyMedium!

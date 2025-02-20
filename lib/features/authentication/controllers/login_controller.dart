@@ -32,9 +32,9 @@ class LoginController extends GetxController {
             .firstWhere((user) => user['id'] == userId)['totalPoin'];
         Get.offAll(
           () => NavigationMenu(
-            userName: username,
-            userEmail: userEmail,
-            userPoints: userPoints,
+            username: username,
+            email: userEmail,
+            poin: userPoints,
           ),
         );
       } catch (e) {
@@ -43,9 +43,9 @@ class LoginController extends GetxController {
         }
         Get.offAll(
           () => NavigationMenu(
-            userName: username,
-            userEmail: userEmail,
-            userPoints: 0,
+            username: username,
+            email: userEmail,
+            poin: 0,
           ),
         );
       }

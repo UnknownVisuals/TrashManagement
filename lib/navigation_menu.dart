@@ -5,29 +5,29 @@ import 'package:iconsax/iconsax.dart';
 import 'package:trash_management/features/leaderboard/screens/leaderboard.dart';
 import 'package:trash_management/features/news/screens/news.dart';
 import 'package:trash_management/features/personalization/screens/settings/settings.dart';
-import 'package:trash_management/features/trash_management/screens/home/home.dart';
+import 'package:trash_management/features/trash_bank/screens/home/home.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/helpers/helper_functions.dart';
 
 class NavigationMenu extends StatelessWidget {
-  final String userName;
-  final String userEmail;
-  final int userPoints;
+  final String username;
+  final String email;
+  final int poin;
 
   const NavigationMenu({
     super.key,
-    required this.userName,
-    required this.userEmail,
-    required this.userPoints,
+    required this.username,
+    required this.email,
+    required this.poin,
   });
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(
       NavigationController(
-        userName: userName,
-        userEmail: userEmail,
-        userPoints: userPoints,
+        username: username,
+        email: email,
+        poin: poin,
       ),
     );
     final dark = REYHelperFunctions.isDarkMode(context);
@@ -68,21 +68,21 @@ class NavigationMenu extends StatelessWidget {
 
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
-  final String userName;
-  final String userEmail;
-  final int userPoints;
+  final String username;
+  final String email;
+  final int poin;
   late final List<Widget> screens;
 
   NavigationController({
-    required this.userName,
-    required this.userEmail,
-    required this.userPoints,
+    required this.username,
+    required this.email,
+    required this.poin,
   }) {
     screens = [
-      HomeScreen(username: userName, userPoints: userPoints),
+      HomeScreen(username: username, poin: poin),
       const LeaderboardScreen(),
       const NewsScreen(),
-      SettingsScreen(userName: userName, userEmail: userEmail),
+      SettingsScreen(username: username, email: email),
     ];
   }
 }
