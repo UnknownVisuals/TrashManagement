@@ -7,23 +7,22 @@ class REYIconButton extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
+    this.color = REYColors.white,
   });
 
   final IconData icon;
   final String title;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(icon, size: REYSizes.iconLg, color: REYColors.white),
+        Icon(icon, size: REYSizes.iconLg, color: color),
         const SizedBox(height: REYSizes.sm),
         Text(
           title,
-          style: Theme.of(context)
-              .textTheme
-              .labelLarge!
-              .copyWith(color: REYColors.white),
+          style: Theme.of(context).textTheme.labelLarge!.copyWith(color: color),
           textAlign: TextAlign.center,
           softWrap: true,
         ),
