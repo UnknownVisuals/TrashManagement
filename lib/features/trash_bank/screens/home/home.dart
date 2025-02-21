@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trash_management/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:trash_management/common/widgets/section_heading.dart';
-import 'package:trash_management/features/trash_bank/screens/history/widgets/history_card.dart';
+import 'package:trash_management/features/trash_bank/screens/history/history.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_appbar.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_card_poin.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_carousel_schedule.dart';
@@ -48,15 +48,10 @@ class HomeScreen extends StatelessWidget {
 
                   // History
                   const REYSectionHeading(
-                      title: 'Riwayat', showActionButton: true),
-                  const HistoryCard(
-                    date: '12 Februari 2025',
-                    name: 'Reynaldhi Tryana Graha',
-                    weight: '12',
-                    type: 'Kertas',
-                    rt: '003',
-                    rw: '006',
+                    title: 'Riwayat',
+                    showActionButton: true,
                   ),
+                  HistoryScreen(username: username, desaId: desaId),
                 ],
               ),
             ),

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:trash_management/features/trash_bank/models/history_model.dart';
 import 'package:trash_management/features/trash_bank/models/schedule_model.dart';
 import 'package:trash_management/features/trash_bank/models/desa_model.dart';
 
@@ -90,6 +91,20 @@ class REYHttpHelper {
       return data.map((item) => DesaModel.fromJson(item)).toList();
     } else {
       throw Exception('Failed to load desa information');
+    }
+  }
+
+  // Helper method to make a GET request for deposit history
+  static Future<List<HistoryModel>> fetchHistoryDeposit(
+    String desaId,
+  ) async {
+    final url = '$_baseUrl/pengumpulan-sampah?desaId=$desaId';
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      return data.map((item) => HistoryModel.fromJson(item)).toList();
+    } else {
+      throw Exception('Failed to load deposit schedule');
     }
   }
 }

@@ -1,9 +1,5 @@
-class DepositModel {
-  final String id, desaId, namaPemilik, berat, jenisSampah, rt, rw;
-  final DateTime waktu;
-  final int poin;
-
-  DepositModel({
+class HistoryModel {
+  HistoryModel({
     required this.id,
     required this.desaId,
     required this.namaPemilik,
@@ -15,8 +11,12 @@ class DepositModel {
     required this.poin,
   });
 
-  factory DepositModel.fromJson(Map<String, dynamic> json) {
-    return DepositModel(
+  final String id, desaId, namaPemilik, berat, jenisSampah, rt, rw;
+  final DateTime waktu;
+  final int poin;
+
+  factory HistoryModel.fromJson(Map<String, dynamic> json) {
+    return HistoryModel(
       id: json['id'],
       desaId: json['desaId'],
       namaPemilik: json['namaPemilik'],

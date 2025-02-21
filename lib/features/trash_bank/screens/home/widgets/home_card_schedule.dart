@@ -7,8 +7,8 @@ import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/device/device_utility.dart';
 
-class ScheduleCard extends StatelessWidget {
-  const ScheduleCard({
+class DepositScheduleCard extends StatelessWidget {
+  const DepositScheduleCard({
     super.key,
     required this.waktuMulai,
     required this.waktuSelesai,
@@ -38,39 +38,43 @@ class ScheduleCard extends StatelessWidget {
             color: REYColors.primary,
             borderRadius: BorderRadius.circular(REYSizes.borderRadiusLg),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              Text(
-                'Pengumpulan Sampah',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(color: REYColors.white),
-              ),
-              const SizedBox(height: REYSizes.sm),
-              Text(
-                '$formattedWaktuMulai WIB\ns/d\n$formattedWaktuSelesai WIB',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .copyWith(color: REYColors.white),
-              ),
-              const SizedBox(height: REYSizes.sm / 2),
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(
-                    Iconsax.location,
-                    size: REYSizes.iconSm,
-                    color: REYColors.white,
-                  ),
-                  const SizedBox(width: REYSizes.sm / 2),
                   Text(
-                    desa,
+                    'Pengumpulan Sampah',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge!
+                        .copyWith(color: REYColors.white),
+                  ),
+                  const SizedBox(height: REYSizes.sm),
+                  Text(
+                    '$formattedWaktuMulai WIB\ns/d\n$formattedWaktuSelesai WIB',
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
                         .copyWith(color: REYColors.white),
+                  ),
+                  const SizedBox(height: REYSizes.sm / 2),
+                  Row(
+                    children: [
+                      const Icon(
+                        Iconsax.location,
+                        size: REYSizes.iconSm,
+                        color: REYColors.white,
+                      ),
+                      const SizedBox(width: REYSizes.sm / 2),
+                      Text(
+                        desa,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: REYColors.white),
+                      ),
+                    ],
                   ),
                 ],
               ),

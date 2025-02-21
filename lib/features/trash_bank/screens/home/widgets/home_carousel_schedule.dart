@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:trash_management/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:trash_management/features/trash_bank/controllers/home_controller.dart';
 import 'package:trash_management/features/trash_bank/controllers/schedule_controller.dart';
-import 'package:trash_management/features/trash_bank/screens/home/widgets/home_card_deposit_schedule.dart';
+import 'package:trash_management/features/trash_bank/screens/home/widgets/home_card_schedule.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
