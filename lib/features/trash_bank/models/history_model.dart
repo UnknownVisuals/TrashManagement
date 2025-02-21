@@ -24,7 +24,7 @@ class HistoryModel {
       jenisSampah: json['jenisSampah'],
       rw: json['rw'],
       rt: json['rt'],
-      waktu: DateTime.parse(json['waktu']),
+      waktu: DateTime.parse(json['waktu']).toLocal(),
       poin: json['poin'],
     );
   }

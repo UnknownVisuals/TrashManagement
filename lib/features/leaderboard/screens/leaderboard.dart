@@ -27,7 +27,10 @@ class LeaderboardScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: REYAppBar(
-        title: const Text('Peringkat'),
+        title: Text(
+          'Peringkat',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
         actions: [
           GestureDetector(
             onTap: () => Get.to(const ProfileScreen()),
@@ -62,7 +65,7 @@ class LeaderboardScreen extends StatelessWidget {
                 return LeaderboardCard(
                   name: item.namaPemilik,
                   counts:
-                      'Jumlah pengumpulan: ${item.jumlahPengumpulan.toString().padLeft(2, '0')}',
+                      '${item.jumlahPengumpulan.toString().padLeft(2, '0')} kali pengumpulan',
                   points: item.totalPoin.toString(),
                   color: color,
                 );

@@ -24,13 +24,13 @@ class HomeAppBar extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .labelMedium!
-                .apply(color: REYColors.grey),
+                .apply(color: REYColors.white),
           ),
           Text(
             'Hello, $username!',
             style: Theme.of(context)
                 .textTheme
-                .headlineSmall!
+                .headlineMedium!
                 .apply(color: REYColors.white),
           ),
         ],

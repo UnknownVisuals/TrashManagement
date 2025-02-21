@@ -47,10 +47,11 @@ class HomeCarouselSchedule extends StatelessWidget {
             children: [
               for (int i = 0; i < scheduleController.schedule.length; i++)
                 REYCircularContainer(
-                  width: 20,
+                  width:
+                      homeController.carouselCurrentIndex.value == i ? 20 : 16,
                   height:
                       homeController.carouselCurrentIndex.value == i ? 6 : 4,
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
                   backgroundColor:
                       homeController.carouselCurrentIndex.value == i
                           ? REYColors.primary

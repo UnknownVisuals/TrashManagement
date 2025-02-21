@@ -16,7 +16,10 @@ class NewsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: REYAppBar(
-        title: const Text('Berita'),
+        title: Text(
+          'Berita',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
         actions: [
           GestureDetector(
             onTap: () => Get.to(const ProfileScreen()),

@@ -29,9 +29,10 @@ class HistoryCard extends StatelessWidget {
     final formattedDate = DateFormat('dd MMMM yyyy, HH:mm').format(waktu);
 
     return Container(
-      margin: const EdgeInsets.only(bottom: REYSizes.spaceBtwItems),
       decoration: BoxDecoration(
-        color: REYColors.grey.withValues(alpha: 0.2),
+        color: dark
+            ? REYColors.grey.withValues(alpha: 0.1)
+            : REYColors.grey.withValues(alpha: 0.6),
         borderRadius: BorderRadius.circular(REYSizes.borderRadiusLg),
       ),
       child: Padding(
@@ -41,8 +42,8 @@ class HistoryCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              formattedDate,
-              style: Theme.of(context).textTheme.labelMedium,
+              '$formattedDate WIB',
+              style: Theme.of(context).textTheme.labelSmall,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,16 +54,16 @@ class HistoryCard extends StatelessWidget {
                   children: [
                     Text(
                       namaPemilik,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.headlineMedium,
                     ),
                     Text(
                       '${berat}Kg $jenisSampah',
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.bodyLarge,
                     ),
-                    Text(
-                      'RT${rt.padLeft(2, '0')}/RW${rw.padLeft(2, '0')}',
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
+                    // Text(
+                    //   'RT${rt.padLeft(2, '0')} | RW${rw.padLeft(2, '0')}',
+                    //   style: Theme.of(context).textTheme.labelSmall,
+                    // ),
                   ],
                 ),
                 Column(

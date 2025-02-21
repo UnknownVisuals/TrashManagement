@@ -1,15 +1,13 @@
 class LeaderboardModel {
-  final String id;
-  final String namaPemilik;
-  final int totalPoin;
-  final int jumlahPengumpulan;
-
   LeaderboardModel({
     required this.id,
     required this.namaPemilik,
     required this.totalPoin,
     required this.jumlahPengumpulan,
   });
+
+  final String id, namaPemilik;
+  final int totalPoin, jumlahPengumpulan;
 
   factory LeaderboardModel.fromJson(Map<String, dynamic> json) {
     return LeaderboardModel(

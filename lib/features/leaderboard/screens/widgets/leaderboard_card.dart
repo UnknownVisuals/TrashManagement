@@ -43,8 +43,7 @@ class LeaderboardCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(
-              Iconsax.coin_15,
-              color: REYColors.primary,
+              Iconsax.coin_1,
               size: REYSizes.iconLg,
             ),
             Text(
