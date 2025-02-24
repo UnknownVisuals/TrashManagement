@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:trash_management/features/trash_bank/screens/history/widgets/history_card.dart';
-import 'package:get/get.dart';
-import 'package:trash_management/features/trash_bank/controllers/history_controller.dart';
+import 'package:trash_management/common/widgets/appbar/appbar.dart';
+import 'package:trash_management/features/trash_bank/screens/history/widgets/history_card_list.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
 class HistoryScreen extends StatelessWidget {
@@ -15,26 +14,19 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HistoryController controller = Get.put(HistoryController());
-    controller.fetchHistory(desaId);
-
-    return Obx(
-      () => Column(
-        spacing: REYSizes.spaceBtwItems,
-        children: controller.history
-            .where((history) => history.namaPemilik == username)
-            .map((filteredHistory) {
-          return HistoryCard(
-            desaId: filteredHistory.desaId,
-            namaPemilik: filteredHistory.namaPemilik,
-            berat: filteredHistory.berat,
-            jenisSampah: filteredHistory.jenisSampah,
-            poin: filteredHistory.poin,
-            waktu: filteredHistory.waktu,
-            rt: filteredHistory.rt,
-            rw: filteredHistory.rw,
-          );
-        }).toList(),
+    return Scaffold(
+      appBar: REYAppBar(
+        showBackArrow: true,
+        title: Text(
+          'Riwayat',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(REYSizes.defaultSpace),
+          child: HistoryCardList(username: username, desaId: desaId),
+        ),
       ),
     );
   }

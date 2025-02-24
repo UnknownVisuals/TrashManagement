@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:trash_management/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:trash_management/common/widgets/section_heading.dart';
 import 'package:trash_management/features/trash_bank/screens/history/history.dart';
+import 'package:trash_management/features/trash_bank/screens/history/widgets/history_card_list.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_appbar.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_card_poin.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_carousel_schedule.dart';
@@ -47,12 +49,15 @@ class HomeScreen extends StatelessWidget {
                   HomeCarouselSchedule(desaId: desaId),
 
                   // History
-                  const REYSectionHeading(
+                  REYSectionHeading(
                     title: 'Riwayat',
                     showActionButton: true,
+                    onPressed: () => Get.to(
+                      HistoryScreen(username: username, desaId: desaId),
+                    ),
                   ),
                   SingleChildScrollView(
-                    child: HistoryScreen(username: username, desaId: desaId),
+                    child: HistoryCardList(username: username, desaId: desaId),
                   ),
                 ],
               ),
