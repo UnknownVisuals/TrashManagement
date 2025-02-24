@@ -37,45 +37,39 @@ class HistoryCard extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(REYSizes.md),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '$formattedDate WIB',
-              style: Theme.of(context).textTheme.labelSmall,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      namaPemilik,
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                    Text(
-                      '${berat}Kg $jenisSampah',
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                    // Text(
-                    //   'RT${rt.padLeft(2, '0')} | RW${rw.padLeft(2, '0')}',
-                    //   style: Theme.of(context).textTheme.labelSmall,
-                    // ),
-                  ],
+                Text(
+                  '$formattedDate WIB',
+                  style: Theme.of(context).textTheme.labelSmall,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    REYIconButton(
-                      icon: Iconsax.coin_1,
-                      title: poin.toString(),
-                      color: dark ? REYColors.white : REYColors.black,
-                    ),
-                  ],
+                Text(
+                  namaPemilik,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                Text(
+                  '${berat}Kg $jenisSampah',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                // Text(
+                //   'RT${rt.padLeft(2, '0')} | RW${rw.padLeft(2, '0')}',
+                //   style: Theme.of(context).textTheme.labelSmall,
+                // ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                REYIconButton(
+                  icon: Iconsax.coin_1,
+                  title: poin.toString(),
+                  color: dark ? REYColors.white : REYColors.black,
                 ),
               ],
             ),

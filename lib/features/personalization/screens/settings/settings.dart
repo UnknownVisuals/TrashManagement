@@ -6,6 +6,7 @@ import 'package:trash_management/common/widgets/custom_shapes/containers/primary
 import 'package:trash_management/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:trash_management/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:trash_management/common/widgets/section_heading.dart';
+import 'package:trash_management/features/trash_bank/screens/history/history.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/local_storage/theme_controller.dart';
@@ -65,10 +66,13 @@ class SettingsScreen extends StatelessWidget {
                     showActionButton: false,
                   ),
                   const SizedBox(height: REYSizes.spaceBtwItems),
-                  const REYSettingsMenuTile(
+                  REYSettingsMenuTile(
                     icon: Iconsax.trash,
                     title: 'Riwayat',
                     subTitle: 'Lihat riwayat setor sampah',
+                    onTap: () => Get.to(
+                      HistoryScreen(username: username, desaId: desaId),
+                    ),
                   ),
                   const REYSettingsMenuTile(
                     icon: Iconsax.ranking,

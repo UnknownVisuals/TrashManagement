@@ -25,7 +25,13 @@ class HomeCarouselSchedule extends StatelessWidget {
         Obx(
           () => CarouselSlider(
             options: CarouselOptions(
+              aspectRatio: 16 / 9,
               viewportFraction: 1,
+              autoPlay: true,
+              autoPlayInterval: const Duration(seconds: 4),
+              enlargeCenterPage: true,
+              enlargeFactor: 0.4,
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
               onPageChanged: (index, _) =>
                   homeController.updatePageIndicator(index),
             ),
