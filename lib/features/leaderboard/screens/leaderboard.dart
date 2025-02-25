@@ -33,7 +33,12 @@ class LeaderboardScreen extends StatelessWidget {
         ),
         actions: [
           GestureDetector(
-            onTap: () => Get.to(const ProfileScreen()),
+            onTap: () => Get.to(
+              ProfileScreen(
+                username: username,
+                email: email,
+              ),
+            ),
             child: Image.asset(REYImages.user, width: 40, height: 40),
           ),
         ],

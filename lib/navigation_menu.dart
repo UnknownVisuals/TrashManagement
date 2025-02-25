@@ -97,7 +97,13 @@ class NavigationController extends GetxController {
         desaId: desaId,
         poin: poin,
       ),
-      const NewsScreen(),
+      NewsScreen(
+        userId: userId,
+        username: username,
+        email: email,
+        desaId: desaId,
+        poin: poin,
+      ),
       SettingsScreen(
         userId: userId,
         username: username,

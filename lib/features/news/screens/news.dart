@@ -8,7 +8,17 @@ import 'package:trash_management/utils/constants/image_strings.dart';
 import 'package:trash_management/features/news/controllers/news_controller.dart';
 
 class NewsScreen extends StatelessWidget {
-  const NewsScreen({super.key});
+  const NewsScreen({
+    super.key,
+    required this.userId,
+    required this.username,
+    required this.email,
+    required this.desaId,
+    required this.poin,
+  });
+
+  final String userId, username, email, desaId;
+  final int poin;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +32,12 @@ class NewsScreen extends StatelessWidget {
         ),
         actions: [
           GestureDetector(
-            onTap: () => Get.to(const ProfileScreen()),
+            onTap: () => Get.to(
+              ProfileScreen(
+                username: username,
+                email: email,
+              ),
+            ),
             child: Image.asset(REYImages.user, width: 40, height: 40),
           ),
         ],
