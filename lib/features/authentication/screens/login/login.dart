@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/get_utils.dart';
+import 'package:get/get.dart';
 import 'package:trash_management/common/styles/spacing_styles.dart';
 import 'package:trash_management/common/widgets/login_signup/form_divider.dart';
 import 'package:trash_management/common/widgets/login_signup/social_button.dart';
@@ -7,12 +7,15 @@ import 'package:trash_management/features/authentication/screens/login/widgets/l
 import 'package:trash_management/features/authentication/screens/login/widgets/login_header.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/constants/text_strings.dart';
+import 'package:trash_management/features/authentication/controllers/login_controller.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(LoginController());
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: REYSpacingStyle.paddingWithAppBarHeight,
