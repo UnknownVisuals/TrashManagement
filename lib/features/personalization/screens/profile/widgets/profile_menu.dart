@@ -25,7 +25,7 @@ class ProfileMenu extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              flex: 3,
+              flex: 4,
               child: Text(
                 title,
                 style: Theme.of(context).textTheme.bodySmall,
@@ -33,14 +33,14 @@ class ProfileMenu extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 5,
+              flex: 6,
               child: Text(
                 value,
                 style: Theme.of(context).textTheme.bodyMedium,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            Expanded(child: Icon(icon, size: 18)),
+            // Expanded(child: Icon(icon, size: 18)),
           ],
         ),
       ),

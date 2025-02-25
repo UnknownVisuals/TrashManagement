@@ -3,11 +3,18 @@ import 'package:trash_management/common/widgets/appbar/appbar.dart';
 import 'package:trash_management/common/widgets/images/circular_image.dart';
 import 'package:trash_management/common/widgets/section_heading.dart';
 import 'package:trash_management/features/personalization/screens/profile/widgets/profile_menu.dart';
+import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/image_strings.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({
+    super.key,
+    required this.username,
+    required this.email,
+  });
+
+  final String username, email;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +40,10 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: const Text('Ubah gambar profil'),
+                      child: const Text(
+                        'Ubah gambar profil',
+                        style: TextStyle(color: REYColors.primary),
+                      ),
                     ),
                   ],
                 ),
@@ -50,42 +60,12 @@ class ProfileScreen extends StatelessWidget {
 
               ProfileMenu(
                 title: 'Nama',
-                value: 'Reynaldhi T. Graha',
+                value: username,
                 onPressed: () {},
               ),
-              ProfileMenu(
-                title: 'Username',
-                value: 'reynaldhi3000',
-                onPressed: () {},
-              ),
-
-              // Divider
-              const SizedBox(height: REYSizes.spaceBtwSections / 2),
-              const Divider(),
-              const SizedBox(height: REYSizes.spaceBtwSections),
-
-              // Personal Info
-              const REYSectionHeading(title: 'Informasi pribadi'),
-              const SizedBox(height: REYSizes.spaceBtwItems),
-
               ProfileMenu(
                 title: 'Email',
-                value: 'reynaldhi@gmail.com',
-                onPressed: () {},
-              ),
-              ProfileMenu(
-                title: 'Nomor Telp.',
-                value: '+6285123456789',
-                onPressed: () {},
-              ),
-              ProfileMenu(
-                title: 'RT',
-                value: '003',
-                onPressed: () {},
-              ),
-              ProfileMenu(
-                title: 'RW',
-                value: '006',
+                value: email,
                 onPressed: () {},
               ),
               ProfileMenu(

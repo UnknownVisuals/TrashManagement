@@ -67,7 +67,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: REYSizes.spaceBtwItems),
                   REYSettingsMenuTile(
-                    icon: Iconsax.trash,
+                    icon: Iconsax.receipt,
                     title: 'Riwayat',
                     subTitle: 'Lihat riwayat setor sampah',
                     onTap: () => Get.to(
@@ -75,12 +75,12 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   ),
                   const REYSettingsMenuTile(
-                    icon: Iconsax.ranking,
+                    icon: Iconsax.award,
                     title: 'Peringkat',
                     subTitle: 'Lihat peringkat',
                   ),
                   const REYSettingsMenuTile(
-                    icon: Iconsax.safe_home,
+                    icon: Iconsax.location,
                     title: 'Alamat Setor',
                     subTitle: 'Lihat alamat tempat setor sampah',
                   ),

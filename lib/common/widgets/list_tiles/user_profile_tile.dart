@@ -33,7 +33,12 @@ class REYUserProfileTile extends StatelessWidget {
             .apply(color: REYColors.white),
       ),
       trailing: IconButton(
-        onPressed: () => Get.to(const ProfileScreen()),
+        onPressed: () => Get.to(
+          ProfileScreen(
+            username: username,
+            email: email,
+          ),
+        ),
         icon: const Icon(Iconsax.edit, color: REYColors.white),
       ),
     );
