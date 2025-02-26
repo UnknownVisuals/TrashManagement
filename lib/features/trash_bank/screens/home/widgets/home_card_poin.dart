@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:trash_management/common/widgets/icon_button.dart';
+import 'package:trash_management/features/trash_bank/screens/deposit/deposit.dart';
+import 'package:trash_management/features/trash_bank/screens/poin_exchange/poin_exchange.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
@@ -65,16 +68,18 @@ class HomeCardPoin extends StatelessWidget {
             ),
 
             // Icon Buttons
-            const Row(
+            Row(
               children: [
                 REYIconButton(
                   icon: Iconsax.send_2,
                   title: 'Setor\nSampah',
+                  onPressed: () => Get.to(const DepositScreen()),
                 ),
-                SizedBox(width: REYSizes.spaceBtwItems),
+                const SizedBox(width: REYSizes.spaceBtwItems),
                 REYIconButton(
                   icon: Iconsax.bitcoin_convert,
                   title: 'Tukar\nPoin',
+                  onPressed: () => Get.to(const PoinExchangeScreen()),
                 ),
               ],
             ),
