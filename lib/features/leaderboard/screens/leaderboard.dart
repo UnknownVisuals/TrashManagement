@@ -37,6 +37,7 @@ class LeaderboardScreen extends StatelessWidget {
               ProfileScreen(
                 username: username,
                 email: email,
+                desaId: desaId,
               ),
             ),
             child: Image.asset(REYImages.user, width: 40, height: 40),

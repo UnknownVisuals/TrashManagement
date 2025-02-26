@@ -10,9 +10,10 @@ class REYUserProfileTile extends StatelessWidget {
     super.key,
     required this.username,
     required this.email,
+    required this.desaId,
   });
 
-  final String username, email;
+  final String username, email, desaId;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,7 @@ class REYUserProfileTile extends StatelessWidget {
           ProfileScreen(
             username: username,
             email: email,
+            desaId: desaId,
           ),
         ),
         icon: const Icon(Iconsax.edit, color: REYColors.white),

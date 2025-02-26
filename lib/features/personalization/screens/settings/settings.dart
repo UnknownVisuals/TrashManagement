@@ -49,7 +49,11 @@ class SettingsScreen extends StatelessWidget {
                   ),
 
                   // Profile Card
-                  REYUserProfileTile(username: username, email: email),
+                  REYUserProfileTile(
+                    username: username,
+                    email: email,
+                    desaId: desaId,
+                  ),
                   const SizedBox(height: REYSizes.spaceBtwSections),
                 ],
               ),

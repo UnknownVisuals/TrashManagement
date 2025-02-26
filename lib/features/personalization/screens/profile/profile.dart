@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:trash_management/common/widgets/appbar/appbar.dart';
 import 'package:trash_management/common/widgets/images/circular_image.dart';
 import 'package:trash_management/common/widgets/section_heading.dart';
 import 'package:trash_management/features/personalization/screens/profile/widgets/profile_menu.dart';
+import 'package:trash_management/features/trash_bank/controllers/schedule_controller.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/image_strings.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
@@ -12,12 +14,18 @@ class ProfileScreen extends StatelessWidget {
     super.key,
     required this.username,
     required this.email,
+    required this.desaId,
   });
 
-  final String username, email;
+  final String username, email, desaId;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ScheduleController());
+    final desa = controller.desaInformation.firstWhere(
+      (desa) => desa.id == desaId,
+    );
+
     return Scaffold(
       appBar: const REYAppBar(
         showBackArrow: true,
@@ -70,17 +78,22 @@ class ProfileScreen extends StatelessWidget {
               ),
               ProfileMenu(
                 title: 'Desa',
-                value: 'Citereup',
+                value: desa.nama,
                 onPressed: () {},
               ),
               ProfileMenu(
                 title: 'Kecamatan',
-                value: 'Dayeuhkolot',
+                value: desa.kecamatan,
                 onPressed: () {},
               ),
               ProfileMenu(
                 title: 'Kabupaten/Kota',
-                value: 'Kabupaten Bandung',
+                value: desa.kabupaten,
+                onPressed: () {},
+              ),
+              ProfileMenu(
+                title: 'Provinsi',
+                value: desa.provinsi,
                 onPressed: () {},
               ),
             ],
