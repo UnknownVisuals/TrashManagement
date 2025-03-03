@@ -32,6 +32,7 @@ class HomeAppBar extends StatelessWidget {
                 .textTheme
                 .headlineMedium!
                 .apply(color: REYColors.white),
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

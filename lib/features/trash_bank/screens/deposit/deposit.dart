@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trash_management/common/widgets/appbar/appbar.dart';
+import 'package:trash_management/utils/constants/image_strings.dart';
+import 'package:trash_management/utils/constants/sizes.dart';
 
 class DepositScreen extends StatelessWidget {
   const DepositScreen({super.key});
@@ -14,8 +16,26 @@ class DepositScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
-      body: const Center(
-        child: Text('Deposit Screen'),
+      body: Padding(
+        padding: const EdgeInsets.all(REYSizes.defaultSpace),
+        child: Center(
+          child: Column(
+            children: [
+              const Image(
+                image: AssetImage(REYImages.productsSaleIllustration),
+              ),
+              Text(
+                'Cara Setor Sampah',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              Text('data'),
+              Text('data'),
+              Text('data'),
+              Text('data'),
+              Text('data'),
+            ],
+          ),
+        ),
       ),
     );
   }

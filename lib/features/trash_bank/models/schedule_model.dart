@@ -1,3 +1,5 @@
+import 'package:trash_management/features/trash_bank/models/desa_model.dart';
+
 class ScheduleModel {
   ScheduleModel({
     required this.id,
@@ -5,10 +7,12 @@ class ScheduleModel {
     required this.hari,
     required this.waktuMulai,
     required this.waktuSelesai,
+    required this.desa,
   });
 
   final String id, desaId, hari;
   final DateTime waktuMulai, waktuSelesai;
+  final DesaModel desa;
 
   factory ScheduleModel.fromJson(Map<String, dynamic> json) {
     return ScheduleModel(
@@ -17,6 +21,7 @@ class ScheduleModel {
       hari: json['hari'],
       waktuMulai: DateTime.parse(json['waktuMulai']).toLocal(),
       waktuSelesai: DateTime.parse(json['waktuSelesai']).toLocal(),
+      desa: DesaModel.fromJson(json['desa']),
     );
   }
 }

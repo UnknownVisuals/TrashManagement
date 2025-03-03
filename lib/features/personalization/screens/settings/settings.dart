@@ -6,6 +6,7 @@ import 'package:trash_management/common/widgets/custom_shapes/containers/primary
 import 'package:trash_management/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:trash_management/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:trash_management/common/widgets/section_heading.dart';
+import 'package:trash_management/features/authentication/screens/logout/logout.dart';
 import 'package:trash_management/features/trash_bank/screens/history/history.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
@@ -119,7 +120,14 @@ class SettingsScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const LogoutScreen();
+                          },
+                        );
+                      },
                       child: const Text('Logout'),
                     ),
                   ),

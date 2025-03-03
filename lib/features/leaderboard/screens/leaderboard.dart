@@ -69,10 +69,10 @@ class LeaderboardScreen extends StatelessWidget {
                 }
 
                 return LeaderboardCard(
-                  name: item.namaPemilik,
-                  counts:
+                  username: item.user.username,
+                  jumlahPengumpulan:
                       '${item.jumlahPengumpulan.toString().padLeft(2, '0')} kali pengumpulan',
-                  points: item.totalPoin.toString(),
+                  totalPoin: item.totalPoin.toString(),
                   color: color,
                 );
               }).toList(),

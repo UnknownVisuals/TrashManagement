@@ -8,13 +8,13 @@ import 'package:trash_management/utils/helpers/helper_functions.dart';
 class LeaderboardCard extends StatelessWidget {
   const LeaderboardCard({
     super.key,
-    required this.name,
-    required this.counts,
-    required this.points,
+    required this.username,
+    required this.jumlahPengumpulan,
+    required this.totalPoin,
     this.color,
   });
 
-  final String name, counts, points;
+  final String username, jumlahPengumpulan, totalPoin;
   final Color? color;
 
   @override
@@ -31,12 +31,12 @@ class LeaderboardCard extends StatelessWidget {
       child: ListTile(
         leading: Image.asset(REYImages.user, width: 50, height: 50),
         title: Text(
-          name,
+          username,
           style: Theme.of(context).textTheme.titleLarge,
           overflow: TextOverflow.ellipsis,
         ),
         subtitle: Text(
-          counts,
+          jumlahPengumpulan,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         trailing: Column(
@@ -47,7 +47,7 @@ class LeaderboardCard extends StatelessWidget {
               size: REYSizes.iconLg,
             ),
             Text(
-              points,
+              totalPoin,
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ],

@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:trash_management/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:trash_management/features/trash_bank/controllers/home_controller.dart';
 import 'package:trash_management/features/trash_bank/controllers/schedule_controller.dart';
@@ -36,12 +37,64 @@ class HomeCarouselSchedule extends StatelessWidget {
                   homeController.updatePageIndicator(index),
             ),
             items: scheduleController.schedule.map((schedule) {
+              String formattedWaktuMulai = scheduleController.formatDateTime(
+                schedule.waktuMulai,
+              );
+              String formattedWaktuSelesai = scheduleController.formatDateTime(
+                schedule.waktuSelesai,
+              );
+
+              // TODO: Fix Schedule Card if no schedule available
+
               return DepositScheduleCard(
-                waktuMulai: schedule.waktuMulai,
-                waktuSelesai: schedule.waktuSelesai,
-                desa: scheduleController.desaInformation
-                    .firstWhere((desa) => desa.id == schedule.desaId)
-                    .nama,
+                waktuMulai: formattedWaktuMulai,
+                waktuSelesai: formattedWaktuSelesai,
+                desa: schedule.desa.nama,
+                child: schedule.id.isEmpty
+                    ? const Center(
+                        child: Text('Tidak ada jadwal pengumpulan'),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.all(REYSizes.defaultSpace),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Pengumpulan Sampah',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(color: REYColors.white),
+                            ),
+                            const SizedBox(height: REYSizes.sm),
+                            Text(
+                              '$formattedWaktuMulai WIB\ns/d\n$formattedWaktuSelesai WIB',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(color: REYColors.white),
+                            ),
+                            const SizedBox(height: REYSizes.sm / 2),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Iconsax.location,
+                                  size: REYSizes.iconSm,
+                                  color: REYColors.white,
+                                ),
+                                const SizedBox(width: REYSizes.sm / 2),
+                                Text(
+                                  schedule.desa.nama,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .copyWith(color: REYColors.white),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
               );
             }).toList(),
           ),

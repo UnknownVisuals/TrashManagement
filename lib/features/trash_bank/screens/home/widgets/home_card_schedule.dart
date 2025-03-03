@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:trash_management/common/widgets/custom_shapes/containers/circular_container.dart';
-import 'package:trash_management/features/trash_bank/controllers/schedule_controller.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
@@ -12,18 +10,14 @@ class DepositScheduleCard extends StatelessWidget {
     required this.waktuMulai,
     required this.waktuSelesai,
     required this.desa,
+    required this.child,
   });
 
-  final DateTime waktuMulai, waktuSelesai;
-  final String desa;
+  final String waktuMulai, waktuSelesai, desa;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ScheduleController());
-
-    String formattedWaktuMulai = controller.formatDateTime(waktuMulai);
-    String formattedWaktuSelesai = controller.formatDateTime(waktuSelesai);
-
     return Padding(
       padding:
           const EdgeInsets.symmetric(horizontal: REYSizes.spaceBtwItems / 2),
@@ -65,51 +59,7 @@ class DepositScheduleCard extends StatelessWidget {
               color: REYColors.white,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(REYSizes.defaultSpace),
-            child: Stack(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Pengumpulan Sampah',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(color: REYColors.white),
-                    ),
-                    const SizedBox(height: REYSizes.sm),
-                    Text(
-                      '$formattedWaktuMulai WIB\ns/d\n$formattedWaktuSelesai WIB',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: REYColors.white),
-                    ),
-                    const SizedBox(height: REYSizes.sm / 2),
-                    Row(
-                      children: [
-                        const Icon(
-                          Iconsax.location,
-                          size: REYSizes.iconSm,
-                          color: REYColors.white,
-                        ),
-                        const SizedBox(width: REYSizes.sm / 2),
-                        Text(
-                          desa,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(color: REYColors.white),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          child,
         ],
       ),
     );
