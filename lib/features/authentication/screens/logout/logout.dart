@@ -18,26 +18,28 @@ class LogoutScreen extends StatelessWidget {
         ),
       ),
       content: Text(
-        'Yakin mau keluar dari Sobat Sampah?',
+        'Yakin mau keluar Sobat Sampah?',
         style: Theme.of(context).textTheme.bodyMedium,
       ),
       actions: <Widget>[
-        OutlinedButton(
-          onPressed: () => Get.back(),
-          child: const SizedBox(
-            width: double.infinity,
-            child: Center(child: Text('No')),
-          ),
-        ),
-        const SizedBox(height: REYSizes.spaceBtwItems),
-        ElevatedButton(
-          onPressed: () {
-            controller.logout();
-          },
-          child: const SizedBox(
-            width: double.infinity,
-            child: Center(child: Text('Yes')),
-          ),
+        Row(
+          children: [
+            Expanded(
+              child: OutlinedButton(
+                onPressed: () => Get.back(),
+                child: const Center(child: Text('No')),
+              ),
+            ),
+            const SizedBox(width: REYSizes.spaceBtwItems),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  controller.logout();
+                },
+                child: const Center(child: Text('Yes')),
+              ),
+            ),
+          ],
         ),
       ],
     );
