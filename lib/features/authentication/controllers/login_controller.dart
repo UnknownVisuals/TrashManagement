@@ -69,7 +69,6 @@ class LoginController extends GetxController {
       if (kDebugMode) {
         print('Login failed: $e');
       }
-      // Handle specific exceptions if needed
     } finally {
       isLoading.value = false;
     }
@@ -103,12 +102,7 @@ class LoginController extends GetxController {
       final username = prefs.getString('username') ?? '';
       final email = prefs.getString('email') ?? '';
       final desaId = prefs.getString('desaId') ?? '';
-
-      // Fetch user points from leaderboard API
-      leaderboardController.fetchLeaderboard();
-      final poinSaatIni = leaderboardController.leaderboard
-          .firstWhere((leaderboard) => leaderboard.userId == userId)
-          .poinSaatIni;
+      final poinSaatIni = prefs.getInt('poinSaatIni') ?? 0;
 
       Get.offAll(
         () => NavigationMenu(

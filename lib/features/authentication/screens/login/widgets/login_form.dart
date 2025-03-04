@@ -14,99 +14,97 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginController loginController = Get.put(LoginController());
+    final LoginController controller = Get.put(LoginController());
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
-    return Form(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: REYSizes.spaceBtwSections,
-        ),
-        child: Column(
-          children: [
-            // Email
-            TextFormField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(Iconsax.direct_right),
-                labelText: REYTexts.email,
+    return Obx(
+      () => Form(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: REYSizes.spaceBtwSections,
+          ),
+          child: Column(
+            children: [
+              // Email
+              TextFormField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Iconsax.direct_right),
+                  labelText: REYTexts.email,
+                ),
               ),
-            ),
-            const SizedBox(height: REYSizes.spaceBtwInputFields),
+              const SizedBox(height: REYSizes.spaceBtwInputFields),
 
-            // Password
-            Obx(
-              () => TextFormField(
+              // Password
+              TextFormField(
                 controller: passwordController,
-                obscureText: loginController.obscurePassword.value,
+                obscureText: controller.obscurePassword.value,
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Iconsax.password_check),
                   labelText: REYTexts.password,
                   suffixIcon: IconButton(
                     icon: Icon(
-                      loginController.obscurePassword.value
+                      controller.obscurePassword.value
                           ? Iconsax.eye_slash
                           : Iconsax.eye,
                     ),
-                    onPressed: loginController.togglePasswordVisibility,
+                    onPressed: controller.togglePasswordVisibility,
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: REYSizes.spaceBtwInputFields / 2),
+              const SizedBox(height: REYSizes.spaceBtwInputFields / 2),
 
-            // Remember Me & Forgot Password
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Remember Me
-                Obx(
-                  () => Row(
+              // Remember Me & Forgot Password
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Remember Me
+                  Row(
                     children: [
                       Checkbox(
-                        value: loginController.rememberMe.value,
-                        onChanged: loginController.toggleRememberMe,
+                        value: controller.rememberMe.value,
+                        onChanged: controller.toggleRememberMe,
                       ),
                       const Text(REYTexts.rememberMe),
                     ],
                   ),
-                ),
 
-                // Forgot Password
-                // TextButton(
-                //   onPressed: () => Get.to(const ForgetPasswordScreen()),
-                //   child: const Text(REYTexts.forgetPassword),
-                // ),
-              ],
-            ),
-            const SizedBox(height: REYSizes.spaceBtwSections),
-
-            // Signin Button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  loginController.login(
-                    emailController.text,
-                    passwordController.text,
-                    "WARGA",
-                  );
-                },
-                child: const Text(REYTexts.signIn),
+                  // Forgot Password
+                  // TextButton(
+                  //   onPressed: () => Get.to(const ForgetPasswordScreen()),
+                  //   child: const Text(REYTexts.forgetPassword),
+                  // ),
+                ],
               ),
-            ),
-            const SizedBox(height: REYSizes.spaceBtwItems),
+              const SizedBox(height: REYSizes.spaceBtwSections),
 
-            // Create Account Button
-            // SizedBox(
-            //   width: double.infinity,
-            //   child: OutlinedButton(
-            //     onPressed: () => Get.to(const SignupScreen()),
-            //     child: const Text(REYTexts.createAccount),
-            //   ),
-            // ),
-          ],
+              // Signin Button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    controller.login(
+                      emailController.text,
+                      passwordController.text,
+                      "WARGA",
+                    );
+                  },
+                  child: const Text(REYTexts.signIn),
+                ),
+              ),
+              const SizedBox(height: REYSizes.spaceBtwItems),
+
+              // Create Account Button
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: OutlinedButton(
+              //     onPressed: () => Get.to(const SignupScreen()),
+              //     child: const Text(REYTexts.createAccount),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );
