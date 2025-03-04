@@ -10,23 +10,26 @@ class LoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Image(
-          height: 150,
-          image: AssetImage(REYImages.logo),
-        ),
-        Text(
-          REYTexts.loginTitle,
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
-        const SizedBox(height: REYSizes.sm),
-        Text(
-          REYTexts.loginSubTitle,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-      ],
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Image(
+            height: 150,
+            image: AssetImage(REYImages.logo),
+          ),
+          Text(
+            REYTexts.loginTitle,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          const SizedBox(height: REYSizes.sm),
+          Text(
+            REYTexts.loginSubTitle,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+        ],
+      ),
     );
   }
 }

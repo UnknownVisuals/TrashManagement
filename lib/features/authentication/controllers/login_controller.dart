@@ -41,32 +41,35 @@ class LoginController extends GetxController {
       final responseUsername = response['user']['username'];
       final responseDesaId = response['user']['desaId'];
 
-      // Save login state
-      await _saveLoginState(
-        responseUserId,
-        responseUsername,
-        responseEmail,
-        responseDesaId,
-      );
-
       // Fetch user points from leaderboard API
       leaderboardController.fetchLeaderboard();
-      final poin = leaderboardController.leaderboard
+      final responsePoin = leaderboardController.leaderboard
           .firstWhere((leaderboard) => leaderboard.userId == responseUserId)
           .poinSaatIni;
+
       Get.offAll(
         () => NavigationMenu(
           userId: responseUserId,
           username: responseUsername,
           email: responseEmail,
           desaId: responseDesaId,
-          poin: poin,
+          poin: responsePoin,
         ),
+      );
+
+      // Save login state
+      await _saveLoginState(
+        responseUserId,
+        responseUsername,
+        responseEmail,
+        responseDesaId,
+        responsePoin,
       );
     } catch (e) {
       if (kDebugMode) {
         print('Login failed: $e');
       }
+      // Handle specific exceptions if needed
     } finally {
       isLoading.value = false;
     }
@@ -77,6 +80,7 @@ class LoginController extends GetxController {
     String username,
     String email,
     String desaId,
+    int poinSaatIni,
   ) async {
     final prefs = await SharedPreferences.getInstance();
 
@@ -86,6 +90,7 @@ class LoginController extends GetxController {
     await prefs.setString('username', username);
     await prefs.setString('email', email);
     await prefs.setString('desaId', desaId);
+    await prefs.setInt('poinSaatIni', poinSaatIni);
   }
 
   Future<void> _loadLoginState() async {
@@ -101,16 +106,17 @@ class LoginController extends GetxController {
 
       // Fetch user points from leaderboard API
       leaderboardController.fetchLeaderboard();
-      final poin = leaderboardController.leaderboard
+      final poinSaatIni = leaderboardController.leaderboard
           .firstWhere((leaderboard) => leaderboard.userId == userId)
           .poinSaatIni;
+
       Get.offAll(
         () => NavigationMenu(
           userId: userId,
           username: username,
           email: email,
           desaId: desaId,
-          poin: poin,
+          poin: poinSaatIni,
         ),
       );
     }

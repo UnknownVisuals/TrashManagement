@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:trash_management/features/authentication/screens/password_config/forget_password.dart';
-import 'package:trash_management/features/authentication/screens/signup/signup.dart';
+// import 'package:trash_management/features/authentication/screens/password_config/forget_password.dart';
+// import 'package:trash_management/features/authentication/screens/signup/signup.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/constants/text_strings.dart';
 import 'package:trash_management/features/authentication/controllers/login_controller.dart';
@@ -74,10 +74,10 @@ class LoginForm extends StatelessWidget {
                 ),
 
                 // Forgot Password
-                TextButton(
-                  onPressed: () => Get.to(const ForgetPasswordScreen()),
-                  child: const Text(REYTexts.forgetPassword),
-                ),
+                // TextButton(
+                //   onPressed: () => Get.to(const ForgetPasswordScreen()),
+                //   child: const Text(REYTexts.forgetPassword),
+                // ),
               ],
             ),
             const SizedBox(height: REYSizes.spaceBtwSections),
@@ -99,13 +99,13 @@ class LoginForm extends StatelessWidget {
             const SizedBox(height: REYSizes.spaceBtwItems),
 
             // Create Account Button
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton(
-                onPressed: () => Get.to(const SignupScreen()),
-                child: const Text(REYTexts.createAccount),
-              ),
-            ),
+            // SizedBox(
+            //   width: double.infinity,
+            //   child: OutlinedButton(
+            //     onPressed: () => Get.to(const SignupScreen()),
+            //     child: const Text(REYTexts.createAccount),
+            //   ),
+            // ),
           ],
         ),
       ),
