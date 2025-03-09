@@ -11,7 +11,7 @@ class PoinExchangeScreen extends StatelessWidget {
         showBackArrow: true,
         title: Text(
           'Tukar Poin',
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
       body: const Center(

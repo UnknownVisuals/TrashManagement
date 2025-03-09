@@ -42,7 +42,7 @@ class HomeAppBar extends StatelessWidget {
             'Hello, $username!',
             style: Theme.of(context)
                 .textTheme
-                .headlineMedium!
+                .headlineSmall!
                 .apply(color: REYColors.white),
             overflow: TextOverflow.ellipsis,
           ),

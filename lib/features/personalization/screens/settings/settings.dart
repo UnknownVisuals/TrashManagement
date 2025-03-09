@@ -7,6 +7,8 @@ import 'package:trash_management/common/widgets/list_tiles/settings_menu_tile.da
 import 'package:trash_management/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:trash_management/common/widgets/section_heading.dart';
 import 'package:trash_management/features/authentication/screens/logout/logout.dart';
+import 'package:trash_management/features/personalization/screens/settings/address.dart';
+import 'package:trash_management/features/trash_bank/screens/deposit/deposit_only.dart';
 import 'package:trash_management/features/trash_bank/screens/history/history.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
@@ -79,15 +81,21 @@ class SettingsScreen extends StatelessWidget {
                       HistoryScreen(userId: userId, desaId: desaId),
                     ),
                   ),
-                  const REYSettingsMenuTile(
-                    icon: Iconsax.award,
-                    title: 'Peringkat',
-                    subTitle: 'Lihat peringkat',
+                  REYSettingsMenuTile(
+                    icon: Iconsax.check,
+                    title: 'Konfirmasi',
+                    subTitle: 'Konfirmasi setor sampah',
+                    onTap: () => Get.to(
+                      DepositOnly(userId: userId, desaId: desaId),
+                    ),
                   ),
-                  const REYSettingsMenuTile(
+                  REYSettingsMenuTile(
                     icon: Iconsax.location,
                     title: 'Alamat Setor',
                     subTitle: 'Lihat alamat tempat setor sampah',
+                    onTap: () => Get.to(
+                      AddressScreen(desaId: desaId),
+                    ),
                   ),
 
                   // App Settings
