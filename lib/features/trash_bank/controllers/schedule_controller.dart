@@ -17,9 +17,10 @@ class ScheduleController extends GetxController {
     fetchDesaInformation();
   }
 
-  String formatDateTime(DateTime dateTime) {
-    final DateFormat formatter = DateFormat('dd MMMM yyyy, HH:mm');
-    return formatter.format(dateTime);
+  String formatDateTime(DateTime dateTime1, DateTime dateTime2) {
+    final DateFormat formatter1 = DateFormat('HH:mm');
+    final DateFormat formatter2 = DateFormat('HH:mm');
+    return '${formatter1.format(dateTime1)} - ${formatter2.format(dateTime2)}';
   }
 
   void setDesaId(String desaId) {

@@ -10,23 +10,29 @@ class HistoryCard extends StatelessWidget {
   const HistoryCard({
     super.key,
     required this.desaId,
-    required this.namaPemilik,
     required this.berat,
     required this.jenisSampah,
     required this.rt,
     required this.rw,
     required this.poin,
     required this.waktu,
+    required this.userId,
+    required this.available,
   });
 
-  final String desaId, namaPemilik, berat, jenisSampah, rt, rw;
+  final String desaId, berat, jenisSampah, rt, rw, userId;
   final int poin;
   final DateTime waktu;
+  final bool available;
 
   @override
   Widget build(BuildContext context) {
     final dark = REYHelperFunctions.isDarkMode(context);
-    final formattedDate = DateFormat('dd MMMM yyyy, HH:mm').format(waktu);
+    final formattedDate = DateFormat('EEEE, dd MMMM yyyy, HH:mm').format(waktu);
+
+    if (!available) {
+      return const SizedBox.shrink();
+    }
 
     return Container(
       decoration: BoxDecoration(
@@ -48,18 +54,16 @@ class HistoryCard extends StatelessWidget {
                   '$formattedDate WIB',
                   style: Theme.of(context).textTheme.labelSmall,
                 ),
-                Text(
-                  namaPemilik,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
+                const SizedBox(height: REYSizes.spaceBtwItems / 4),
                 Text(
                   '${berat}Kg $jenisSampah',
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                // Text(
-                //   'RT${rt.padLeft(2, '0')} | RW${rw.padLeft(2, '0')}',
-                //   style: Theme.of(context).textTheme.labelSmall,
-                // ),
+                const SizedBox(height: REYSizes.spaceBtwItems / 4),
+                Text(
+                  'RT${rt.padLeft(2, '0')}/RW${rw.padLeft(2, '0')}',
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
               ],
             ),
             Column(

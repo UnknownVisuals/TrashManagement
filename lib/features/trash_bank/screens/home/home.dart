@@ -6,7 +6,7 @@ import 'package:trash_management/features/trash_bank/screens/history/history.dar
 import 'package:trash_management/features/trash_bank/screens/history/widgets/history_card_list.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_appbar.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_card_poin.dart';
-import 'package:trash_management/features/trash_bank/screens/home/widgets/home_carousel_schedule.dart';
+import 'package:trash_management/features/trash_bank/screens/home/widgets/home_schedule_carousel.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,9 +32,17 @@ class HomeScreen extends StatelessWidget {
             REYPrimaryHeaderContainer(
               child: Column(
                 children: [
-                  HomeAppBar(username: username),
+                  HomeAppBar(
+                    username: username,
+                    userId: userId,
+                    desaId: desaId,
+                  ),
                   const SizedBox(height: REYSizes.spaceBtwSections),
-                  HomeCardPoin(poin: poin.toString()),
+                  HomeCardPoin(
+                    poin: poin.toString(),
+                    userId: userId,
+                    desaId: desaId,
+                  ),
                   const SizedBox(height: REYSizes.spaceBtwSections * 2),
                 ],
               ),
@@ -46,18 +54,18 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // Schedule Carousel
-                  HomeCarouselSchedule(desaId: desaId),
+                  HomeScheduleCarousel(desaId: desaId),
 
                   // History
                   REYSectionHeading(
                     title: 'Riwayat',
                     showActionButton: true,
                     onPressed: () => Get.to(
-                      HistoryScreen(username: username, desaId: desaId),
+                      HistoryScreen(userId: userId, desaId: desaId),
                     ),
                   ),
                   SingleChildScrollView(
-                    child: HistoryCardList(username: username, desaId: desaId),
+                    child: HistoryCardList(userId: userId, desaId: desaId),
                   ),
                 ],
               ),

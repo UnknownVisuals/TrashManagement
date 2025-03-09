@@ -76,7 +76,7 @@ class SettingsScreen extends StatelessWidget {
                     title: 'Riwayat',
                     subTitle: 'Lihat riwayat setor sampah',
                     onTap: () => Get.to(
-                      HistoryScreen(username: username, desaId: desaId),
+                      HistoryScreen(userId: userId, desaId: desaId),
                     ),
                   ),
                   const REYSettingsMenuTile(

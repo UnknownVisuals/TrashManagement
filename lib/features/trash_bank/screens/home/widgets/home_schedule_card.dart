@@ -7,13 +7,9 @@ import 'package:trash_management/utils/constants/sizes.dart';
 class DepositScheduleCard extends StatelessWidget {
   const DepositScheduleCard({
     super.key,
-    required this.waktuMulai,
-    required this.waktuSelesai,
-    required this.desa,
     required this.child,
   });
 
-  final String waktuMulai, waktuSelesai, desa;
   final Widget child;
 
   @override

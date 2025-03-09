@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:trash_management/common/widgets/appbar/appbar.dart';
-import 'package:trash_management/utils/constants/image_strings.dart';
+import 'package:trash_management/common/widgets/section_heading.dart';
+import 'package:trash_management/features/trash_bank/screens/deposit/widgets/deposit_card_list.dart';
+import 'package:trash_management/features/trash_bank/screens/deposit/widgets/deposit_tutorial_carousel.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
 class DepositScreen extends StatelessWidget {
-  const DepositScreen({super.key});
+  const DepositScreen({
+    super.key,
+    required this.userId,
+    required this.desaId,
+  });
+
+  final String userId, desaId;
 
   @override
   Widget build(BuildContext context) {
@@ -16,25 +24,18 @@ class DepositScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(REYSizes.defaultSpace),
-        child: Center(
-          child: Column(
-            children: [
-              const Image(
-                image: AssetImage(REYImages.productsSaleIllustration),
-              ),
-              Text(
-                'Cara Setor Sampah',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              Text('data'),
-              Text('data'),
-              Text('data'),
-              Text('data'),
-              Text('data'),
-            ],
-          ),
+        child: Column(
+          children: [
+            const DepositTutorialCarousel(),
+            const SizedBox(height: REYSizes.spaceBtwSections),
+            const REYSectionHeading(
+              title: 'Menunggu Konfirmasi',
+            ),
+            const SizedBox(height: REYSizes.spaceBtwItems),
+            DepositCardList(userId: userId, desaId: desaId),
+          ],
         ),
       ),
     );

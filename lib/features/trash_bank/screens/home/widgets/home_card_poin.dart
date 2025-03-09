@@ -11,9 +11,11 @@ class HomeCardPoin extends StatelessWidget {
   const HomeCardPoin({
     super.key,
     required this.poin,
+    required this.userId,
+    required this.desaId,
   });
 
-  final String poin;
+  final String poin, userId, desaId;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,10 @@ class HomeCardPoin extends StatelessWidget {
                 REYIconButton(
                   icon: Iconsax.send_2,
                   title: 'Setor\nSampah',
-                  onPressed: () => Get.to(const DepositScreen()),
+                  onPressed: () => Get.to(DepositScreen(
+                    userId: userId,
+                    desaId: desaId,
+                  )),
                 ),
                 const SizedBox(width: REYSizes.spaceBtwItems),
                 REYIconButton(

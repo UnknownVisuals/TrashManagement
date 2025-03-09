@@ -23,7 +23,7 @@ class REYIconButton extends StatelessWidget {
       child: Column(
         children: [
           Icon(icon, size: REYSizes.iconLg, color: color),
-          const SizedBox(height: REYSizes.sm),
+          const SizedBox(height: REYSizes.sm / 2),
           Text(
             title,
             style:

@@ -6,11 +6,11 @@ import 'package:trash_management/utils/constants/sizes.dart';
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({
     super.key,
-    required this.username,
+    required this.userId,
     required this.desaId,
   });
 
-  final String username, desaId;
+  final String userId, desaId;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class HistoryScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(REYSizes.defaultSpace),
-          child: HistoryCardList(username: username, desaId: desaId),
+          child: HistoryCardList(userId: userId, desaId: desaId),
         ),
       ),
     );

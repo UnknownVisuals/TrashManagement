@@ -5,10 +5,12 @@ import 'package:trash_management/utils/constants/colors.dart';
 class REYNotificationCounterIcon extends StatelessWidget {
   const REYNotificationCounterIcon({
     super.key,
+    required this.availableCount,
     required this.iconColor,
     required this.onPressed,
   });
 
+  final int availableCount;
   final Color iconColor;
   final VoidCallback onPressed;
 
@@ -23,27 +25,29 @@ class REYNotificationCounterIcon extends StatelessWidget {
             color: iconColor,
           ),
         ),
-        Positioned(
-          top: 4,
-          right: 4,
-          child: Container(
-            width: 18,
-            height: 18,
-            decoration: BoxDecoration(
-              color: REYColors.black,
-              borderRadius: BorderRadius.circular(100),
-            ),
-            child: Center(
-              child: Text(
-                '2',
-                style: Theme.of(context).textTheme.labelLarge!.apply(
-                      color: REYColors.white,
-                      fontSizeFactor: 0.8,
+        availableCount == 0
+            ? const SizedBox.shrink()
+            : Positioned(
+                top: 4,
+                right: 4,
+                child: Container(
+                  width: 18,
+                  height: 18,
+                  decoration: BoxDecoration(
+                    color: REYColors.black,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Center(
+                    child: Text(
+                      availableCount.toString(),
+                      style: Theme.of(context).textTheme.labelLarge!.apply(
+                            color: REYColors.white,
+                            fontSizeFactor: 0.8,
+                          ),
                     ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
       ],
     );
   }
