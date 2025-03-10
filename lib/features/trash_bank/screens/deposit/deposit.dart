@@ -44,7 +44,7 @@ class DepositScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: REYSizes.spaceBtwItems),
-            DepositCardList(userId: userId, desaId: desaId),
+            DepositCardList(userId: userId),
           ],
         ),
       ),

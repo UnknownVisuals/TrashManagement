@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   SingleChildScrollView(
-                    child: HistoryCardList(userId: userId, desaId: desaId),
+                    child: HistoryCardList(userId: userId),
                   ),
                 ],
               ),

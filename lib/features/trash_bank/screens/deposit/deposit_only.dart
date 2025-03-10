@@ -24,7 +24,7 @@ class DepositOnly extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(REYSizes.defaultSpace),
-        child: DepositCardList(userId: userId, desaId: desaId),
+        child: DepositCardList(userId: userId),
       ),
     );
   }

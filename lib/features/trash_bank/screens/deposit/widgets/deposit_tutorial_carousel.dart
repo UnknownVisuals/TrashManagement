@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:trash_management/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:trash_management/features/trash_bank/controllers/home_controller.dart';
 import 'package:trash_management/utils/constants/colors.dart';
-import 'package:trash_management/utils/constants/image_strings.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
 class DepositTutorialCarousel extends StatelessWidget {
@@ -25,14 +24,76 @@ class DepositTutorialCarousel extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const Image(
-              image: AssetImage(REYImages.deliveredEmailIllustration),
+            const Flexible(
+              flex: 4,
+              child: Image(
+                image: AssetImage("assets/onboarding/onboarding_1_alt.png"),
+              ),
             ),
             const SizedBox(height: REYSizes.spaceBtwItems),
-            Text(
-              'Setor sampah Anda dan dapatkan poin lalu tukarkan',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium,
+            Flexible(
+              flex: 1,
+              child: Text(
+                'Kumpulkan dan pilah sampahmu!',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ),
+          ],
+        ),
+      ),
+      Container(
+        width: double.infinity,
+        height: double.infinity,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          border: Border.all(color: REYColors.borderPrimary),
+          borderRadius: BorderRadius.circular(REYSizes.borderRadiusLg),
+        ),
+        child: Column(
+          children: [
+            const Flexible(
+              flex: 4,
+              child: Image(
+                image: AssetImage("assets/onboarding/onboarding_2_alt.png"),
+              ),
+            ),
+            const SizedBox(height: REYSizes.spaceBtwItems),
+            Flexible(
+              flex: 1,
+              child: Text(
+                'Bawa sampahmu ke bank sampah terdekat!',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ),
+          ],
+        ),
+      ),
+      Container(
+        width: double.infinity,
+        height: double.infinity,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          border: Border.all(color: REYColors.borderPrimary),
+          borderRadius: BorderRadius.circular(REYSizes.borderRadiusLg),
+        ),
+        child: Column(
+          children: [
+            const Flexible(
+              flex: 4,
+              child: Image(
+                image: AssetImage("assets/onboarding/onboarding_3_alt.png"),
+              ),
+            ),
+            const SizedBox(height: REYSizes.spaceBtwItems),
+            Flexible(
+              flex: 1,
+              child: Text(
+                'Tukar sampahmu dan dapatkan poin untuk hadiah menarik!',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
             ),
           ],
         ),

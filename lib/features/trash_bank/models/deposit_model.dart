@@ -1,5 +1,5 @@
-class HistoryModel {
-  HistoryModel({
+class DepositModel {
+  DepositModel({
     required this.id,
     required this.desaId,
     required this.berat,
@@ -17,8 +17,8 @@ class HistoryModel {
   final DateTime waktu;
   final bool available;
 
-  factory HistoryModel.fromJson(Map<String, dynamic> json) {
-    return HistoryModel(
+  factory DepositModel.fromJson(Map<String, dynamic> json) {
+    return DepositModel(
       id: json['id'],
       desaId: json['desaId'],
       berat: json['berat'],

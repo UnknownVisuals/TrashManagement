@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:trash_management/common/widgets/icon_button.dart';
+import 'package:trash_management/features/trash_bank/screens/deposit/widgets/deposit_confirmation.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/helpers/helper_functions.dart';
@@ -9,6 +10,7 @@ import 'package:trash_management/utils/helpers/helper_functions.dart';
 class DepositCard extends StatelessWidget {
   const DepositCard({
     super.key,
+    required this.id,
     required this.desaId,
     required this.berat,
     required this.jenisSampah,
@@ -20,7 +22,7 @@ class DepositCard extends StatelessWidget {
     required this.available,
   });
 
-  final String desaId, berat, jenisSampah, rt, rw, userId;
+  final String id, desaId, berat, jenisSampah, rt, rw, userId;
   final int poin;
   final DateTime waktu;
   final bool available;
@@ -82,7 +84,20 @@ class DepositCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return DepositConfirmationScreen(
+                            title: 'Konfirmasi',
+                            message: 'Batalkan setor sampah',
+                            userId: userId,
+                            depositId: id,
+                            leaderboardId: 'BELUM',
+                          );
+                        },
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                     ),
@@ -93,7 +108,20 @@ class DepositCard extends StatelessWidget {
                   ),
                   const SizedBox(width: REYSizes.spaceBtwItems),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return DepositConfirmationScreen(
+                            title: 'Konfirmasi',
+                            message: 'Pastikan semua data sudah benar!',
+                            userId: userId,
+                            depositId: id,
+                            leaderboardId: 'BELUM',
+                          );
+                        },
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                     ),
