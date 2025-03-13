@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:trash_management/common/widgets/appbar/appbar.dart';
 import 'package:trash_management/common/widgets/notification/notification_menu_icon.dart';
 import 'package:trash_management/features/trash_bank/controllers/deposit_controller.dart';
-import 'package:trash_management/features/trash_bank/screens/deposit/deposit.dart';
+import 'package:trash_management/features/trash_bank/screens/deposit/deposit_only.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/text_strings.dart';
 
@@ -51,7 +51,7 @@ class HomeAppBar extends StatelessWidget {
       actions: [
         REYNotificationCounterIcon(
           onPressed: () => Get.to(
-            DepositScreen(userId: userId, desaId: desaId),
+            DepositOnly(userId: userId, desaId: desaId),
           ),
           iconColor: REYColors.white,
           availableCount: availableCount,

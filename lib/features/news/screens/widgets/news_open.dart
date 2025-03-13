@@ -12,7 +12,7 @@ class NewsOpen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NewsController controller = Get.find();
+    final NewsController controller = Get.find<NewsController>();
     controller.initializeWebViewController(url);
 
     return Scaffold(

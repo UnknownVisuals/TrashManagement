@@ -9,8 +9,8 @@ import 'package:trash_management/utils/theme/widget_themes/outlined_button_theme
 import 'package:trash_management/utils/theme/widget_themes/text_field_theme.dart';
 import 'package:trash_management/utils/theme/widget_themes/text_theme.dart';
 
-class TAppTheme {
-  TAppTheme._();
+class REYAppTheme {
+  REYAppTheme._();
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,

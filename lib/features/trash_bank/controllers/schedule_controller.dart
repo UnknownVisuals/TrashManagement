@@ -1,51 +1,44 @@
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:trash_management/features/trash_bank/models/desa_model.dart';
 import 'package:trash_management/features/trash_bank/models/schedule_model.dart';
 import 'package:trash_management/utils/http/http_client.dart';
+import 'package:trash_management/utils/popups/loaders.dart';
 
 class ScheduleController extends GetxController {
-  static ScheduleController get instance => Get.find();
+  final REYHttpHelper httpHelper = Get.put(REYHttpHelper());
 
-  var schedule = <ScheduleModel>[].obs;
-  var desaInformation = <DesaModel>[].obs;
+  RxList<ScheduleModel> schedule = <ScheduleModel>[].obs;
+  Rx<bool> isLoading = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    fetchDesaInformation();
+  // GET Jadwal Pengumpulan
+  Future<void> getSchedule({required String desaId}) async {
+    isLoading.value = true;
+
+    try {
+      final scheduleResponse = await httpHelper.getRequest(
+        '/jadwal-pengumpulan?desaId=$desaId',
+      );
+
+      final List<dynamic> jsonData = jsonDecode(scheduleResponse.body);
+
+      schedule.value =
+          jsonData.map((data) => ScheduleModel.fromJson(data)).toList();
+    } catch (e) {
+      REYLoaders.errorSnackBar(
+        title: "Gagal memuat jadwal",
+        message: e.toString(),
+      );
+    } finally {
+      isLoading.value = false;
+    }
   }
 
-  String formatDateTime(DateTime dateTime1, DateTime dateTime2) {
+  // Format jadwal waktu mulai - waktu selesai
+  String formatScheduleTime(DateTime dateTime1, DateTime dateTime2) {
     final DateFormat formatter1 = DateFormat('HH:mm');
     final DateFormat formatter2 = DateFormat('HH:mm');
     return '${formatter1.format(dateTime1)} - ${formatter2.format(dateTime2)}';
-  }
-
-  void setDesaId(String desaId) {
-    fetchSchedule(desaId);
-  }
-
-  void fetchDesaInformation() async {
-    try {
-      var desaInfo = await REYHttpHelper.fetchDesaInformation();
-      desaInformation.assignAll(desaInfo);
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error fetching desa information: $e');
-      }
-    }
-  }
-
-  void fetchSchedule(String desaId) async {
-    try {
-      var scheduleData = await REYHttpHelper.fetchDepositSchedule(desaId);
-      schedule.assignAll(scheduleData);
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error fetching schedule: $e');
-      }
-    }
   }
 }

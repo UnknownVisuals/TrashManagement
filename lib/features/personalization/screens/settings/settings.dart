@@ -12,7 +12,7 @@ import 'package:trash_management/features/trash_bank/screens/deposit/deposit_onl
 import 'package:trash_management/features/trash_bank/screens/history/history.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
-import 'package:trash_management/utils/local_storage/theme_controller.dart';
+import 'package:trash_management/controllers/theme_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/constants/text_strings.dart';
-import 'package:trash_management/utils/helpers/helper_functions.dart';
 import 'package:trash_management/features/authentication/controllers/signup_controller.dart';
 
 class TermAndConditions extends StatelessWidget {
@@ -11,8 +10,7 @@ class TermAndConditions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SignupController signupController = Get.find<SignupController>();
-    final dark = REYHelperFunctions.isDarkMode(context);
+    final SignupController signupController = Get.put(SignupController());
 
     return Obx(
       () => Row(
@@ -37,7 +35,7 @@ class TermAndConditions extends StatelessWidget {
                   TextSpan(
                     text: REYTexts.privacyPolicy,
                     style: Theme.of(context).textTheme.bodyMedium!.apply(
-                          color: dark ? REYColors.primary : REYColors.primary,
+                          color: REYColors.primary,
                           decoration: TextDecoration.underline,
                           decorationColor: REYColors.primary,
                         ),
@@ -49,7 +47,7 @@ class TermAndConditions extends StatelessWidget {
                   TextSpan(
                     text: REYTexts.termsOfUse,
                     style: Theme.of(context).textTheme.bodyMedium!.apply(
-                          color: dark ? REYColors.primary : REYColors.primary,
+                          color: REYColors.primary,
                           decoration: TextDecoration.underline,
                           decorationColor: REYColors.primary,
                         ),

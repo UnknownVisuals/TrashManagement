@@ -23,7 +23,9 @@ class LeaderboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LeaderboardController controller = Get.put(LeaderboardController());
+    final LeaderboardController leaderboardController = Get.put(
+      LeaderboardController(),
+    );
 
     return Scaffold(
       appBar: REYAppBar(
@@ -45,9 +47,15 @@ class LeaderboardScreen extends StatelessWidget {
         ],
       ),
       body: Obx(() {
-        if (controller.isLoading.value) {
+        if (leaderboardController.isLoading.value) {
           return const Center(
             child: CircularProgressIndicator(color: REYColors.primary),
+          );
+        }
+
+        if (leaderboardController.leaderboard.isEmpty) {
+          return const Center(
+            child: Text('No data available'),
           );
         }
 
@@ -55,7 +63,10 @@ class LeaderboardScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(REYSizes.defaultSpace),
             child: Column(
-              children: controller.leaderboard.asMap().entries.map((entry) {
+              children: leaderboardController.leaderboard
+                  .asMap()
+                  .entries
+                  .map((entry) {
                 var item = entry.value;
                 int index = entry.key;
                 Color? color;

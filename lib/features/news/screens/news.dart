@@ -56,7 +56,7 @@ class NewsScreen extends StatelessWidget {
                 scrollInfo.metrics.pixels ==
                     scrollInfo.metrics.maxScrollExtent &&
                 controller.hasMore.value) {
-              controller.fetchNews();
+              controller.getNews();
             }
             return false;
           },

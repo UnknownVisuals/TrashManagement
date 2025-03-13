@@ -4,9 +4,7 @@ import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/utils/constants/text_strings.dart';
 
 class LoginHeader extends StatelessWidget {
-  const LoginHeader({
-    super.key,
-  });
+  const LoginHeader({super.key});
 
   @override
   Widget build(BuildContext context) {

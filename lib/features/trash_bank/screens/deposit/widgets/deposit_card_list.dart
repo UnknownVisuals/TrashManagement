@@ -15,7 +15,7 @@ class DepositCardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DepositController controller = Get.put(DepositController());
-    controller.fetchDeposit(userId);
+    controller.getDeposit(userId: userId);
 
     return Obx(
       () => Column(

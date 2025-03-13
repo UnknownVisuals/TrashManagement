@@ -22,8 +22,8 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ScheduleController());
-    final desa = controller.desaInformation.firstWhere(
-      (desa) => desa.id == desaId,
+    final schedule = controller.schedule.firstWhere(
+      (schedule) => schedule.desaId == desaId,
     );
 
     return Scaffold(
@@ -78,22 +78,22 @@ class ProfileScreen extends StatelessWidget {
               ),
               ProfileMenu(
                 title: 'Desa',
-                value: desa.nama,
+                value: schedule.desa.nama,
                 onPressed: () {},
               ),
               ProfileMenu(
                 title: 'Kecamatan',
-                value: desa.kecamatan,
+                value: schedule.desa.kecamatan,
                 onPressed: () {},
               ),
               ProfileMenu(
                 title: 'Kabupaten/Kota',
-                value: desa.kabupaten,
+                value: schedule.desa.kabupaten,
                 onPressed: () {},
               ),
               ProfileMenu(
                 title: 'Provinsi',
-                value: desa.provinsi,
+                value: schedule.desa.provinsi,
                 onPressed: () {},
               ),
             ],

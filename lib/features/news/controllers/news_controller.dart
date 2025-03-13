@@ -1,49 +1,59 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:trash_management/features/news/models/news_model.dart';
 import 'package:trash_management/utils/http/http_client.dart';
+import 'package:trash_management/utils/popups/loaders.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class NewsController extends GetxController {
-  var newsList = <NewsModel>[].obs;
-  var isLoading = true.obs;
-  var hasMore = true.obs;
-  var page = 1;
+  final REYHttpHelper httpHelper = Get.put(REYHttpHelper());
+  final RxList<NewsModel> newsList = <NewsModel>[].obs;
+
+  Rx<bool> isLoading = false.obs;
+  Rx<bool> hasMore = false.obs;
+
+  int page = 1;
   final int pageSize = 5;
 
   WebViewController? webViewController;
-  var isWebViewLoading = true.obs;
+  Rx<bool> isWebViewLoading = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     REYHttpHelper.setBaseUrl('https://newsapi.org/v2');
-    fetchNews();
+    getNews();
   }
 
-  void fetchNews() async {
-    if (!hasMore.value) return;
+  void getNews() async {
+    if (isLoading.value) return;
+    isLoading.value = true;
 
     try {
-      isLoading(true);
-      final response = await REYHttpHelper.get(
-        'everything?q=sampah%20OR%20lingkungan&language=id&page=$page&pageSize=$pageSize&apiKey=${dotenv.env['NEWS_API_KEY']}',
+      final newsResponse = await httpHelper.getRequest(
+        "everything?q=sampah%20OR%20lingkungan&language=id&page=$page&pageSize=$pageSize&apiKey=${dotenv.env['NEWS_API_KEY']}",
       );
-      var fetchedNews = (response['articles'] as List)
-          .map((data) => NewsModel.fromJson(data))
-          .toList();
-      if (fetchedNews.length < pageSize) {
-        hasMore(false);
+
+      if (newsResponse.statusCode == 200 &&
+          newsResponse.body['articles'] != null) {
+        List<NewsModel> fetchedNews = (newsResponse.body['articles'] as List)
+            .map((data) => NewsModel.fromJson(data))
+            .toList();
+
+        if (fetchedNews.length < pageSize) {
+          hasMore.value = false;
+        }
+
+        newsList.addAll(fetchedNews);
+        page++;
       }
-      newsList.addAll(fetchedNews);
-      page++;
     } catch (e) {
-      if (kDebugMode) {
-        print('Error fetching news: $e');
-      }
+      REYLoaders.errorSnackBar(
+        title: "Gagal memuat berita",
+        message: e.toString(),
+      );
     } finally {
-      isLoading(false);
+      isLoading.value = false;
     }
   }
 

@@ -4,7 +4,7 @@ import 'package:trash_management/features/authentication/controllers/onboarding_
 import 'package:trash_management/features/authentication/screens/onboarding/widgets/onboarding_dot_indicator.dart';
 import 'package:trash_management/features/authentication/screens/onboarding/widgets/onboarding_next_button.dart';
 import 'package:trash_management/features/authentication/screens/onboarding/widgets/onboarding_page.dart';
-import 'package:trash_management/features/authentication/screens/onboarding/widgets/onboarding_skip.dart';
+import 'package:trash_management/features/authentication/screens/onboarding/widgets/onboarding_skip_button.dart';
 import 'package:trash_management/utils/constants/image_strings.dart';
 import 'package:trash_management/utils/constants/text_strings.dart';
 
@@ -13,14 +13,15 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(OnBoardingController());
+    Get.lazyPut(() => OnBoardingController());
+
     return Scaffold(
       body: Stack(
         children: [
           // Scrollable Pages
           PageView(
-            controller: controller.pageController,
-            onPageChanged: controller.updatePageIndicator,
+            controller: OnBoardingController.instance.pageController,
+            onPageChanged: OnBoardingController.instance.updatePageIndicator,
             children: const [
               OnBoardingPage(
                 image: REYImages.onBoardingImage1,
@@ -41,7 +42,7 @@ class OnBoardingScreen extends StatelessWidget {
           ),
 
           // Skip Button
-          const OnBoardingSkip(),
+          const OnBoardingSkipButton(),
 
           // Dots Indicator
           const OnBoardingDotIndicator(),

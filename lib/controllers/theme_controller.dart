@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:trash_management/utils/local_storage/storage_utility.dart';
 
 class ThemeController extends GetxController {
-  final _box = GetStorage();
+  final _localStorage = REYLocalStorage();
   final _key = 'isDarkMode';
-
   var isDarkMode = false.obs;
 
   ThemeMode get theme {
@@ -17,17 +16,11 @@ class ThemeController extends GetxController {
   }
 
   bool _loadThemeFromStorage() {
-    if (_box.hasData(_key)) {
-      return _box.read<bool>(_key)!;
-    } else {
-      final brightness =
-          WidgetsBinding.instance.platformDispatcher.platformBrightness;
-      return brightness == Brightness.dark;
-    }
+    return _localStorage.readData<bool>(_key) ?? false;
   }
 
   void _saveThemeToStorage(bool isDark) {
-    _box.write(_key, isDark);
+    _localStorage.saveData(_key, isDark);
   }
 
   void toggleTheme(bool isDark) {

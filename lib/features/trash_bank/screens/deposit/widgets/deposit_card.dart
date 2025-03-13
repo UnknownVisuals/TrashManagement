@@ -91,9 +91,7 @@ class DepositCard extends StatelessWidget {
                           return DepositConfirmationScreen(
                             title: 'Konfirmasi',
                             message: 'Batalkan setor sampah',
-                            userId: userId,
                             depositId: id,
-                            leaderboardId: 'BELUM',
                           );
                         },
                       );
@@ -115,9 +113,7 @@ class DepositCard extends StatelessWidget {
                           return DepositConfirmationScreen(
                             title: 'Konfirmasi',
                             message: 'Pastikan semua data sudah benar!',
-                            userId: userId,
                             depositId: id,
-                            leaderboardId: 'BELUM',
                           );
                         },
                       );

@@ -16,10 +16,8 @@ class HomeScheduleCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeController = Get.put(HomeController());
-    final scheduleController = Get.put(ScheduleController());
-
-    scheduleController.setDesaId(desaId);
+    final HomeController homeController = Get.put(HomeController());
+    final ScheduleController scheduleController = Get.put(ScheduleController());
 
     return Obx(
       () => Column(
@@ -33,7 +31,7 @@ class HomeScheduleCarousel extends StatelessWidget {
                   homeController.updatePageIndicator(index),
             ),
             items: scheduleController.schedule.map((schedule) {
-              String formattedWaktu = scheduleController.formatDateTime(
+              String formattedWaktu = scheduleController.formatScheduleTime(
                 schedule.waktuMulai,
                 schedule.waktuSelesai,
               );

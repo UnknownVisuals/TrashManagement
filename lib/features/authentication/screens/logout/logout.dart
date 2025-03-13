@@ -8,8 +8,7 @@ class LogoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(LogoutController());
-
+    final LogoutController logoutController = Get.put(LogoutController());
     return AlertDialog(
       title: Center(
         child: Text(
@@ -33,9 +32,7 @@ class LogoutScreen extends StatelessWidget {
             const SizedBox(width: REYSizes.spaceBtwItems),
             Expanded(
               child: ElevatedButton(
-                onPressed: () {
-                  controller.logout();
-                },
+                onPressed: () => logoutController.logout(),
                 child: const Center(child: Text('Yes')),
               ),
             ),

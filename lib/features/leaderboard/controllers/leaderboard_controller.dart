@@ -1,31 +1,34 @@
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:trash_management/features/leaderboard/models/leaderboard_model.dart';
 import 'package:trash_management/utils/http/http_client.dart';
+import 'package:trash_management/utils/popups/loaders.dart';
 
 class LeaderboardController extends GetxController {
-  var leaderboard = <LeaderboardModel>[].obs;
-  var isLoading = true.obs;
+  final REYHttpHelper httpHelper = Get.find<REYHttpHelper>();
 
-  @override
-  void onInit() {
-    fetchLeaderboard();
-    super.onInit();
-  }
+  RxList<LeaderboardModel> leaderboard = <LeaderboardModel>[].obs;
+  Rx<bool> isLoading = false.obs;
 
-  void fetchLeaderboard() async {
+  // GET Leaderboard
+  Future<void> getLeaderboard() async {
+    isLoading.value = true;
+
     try {
-      isLoading(true);
-      final response = await REYHttpHelper.get('leaderboard');
-      leaderboard.value = (response as List)
-          .map((data) => LeaderboardModel.fromJson(data))
-          .toList();
+      final leaderboardResponse = await httpHelper.getRequest('/leaderboard');
+
+      final List<dynamic> jsonData = jsonDecode(leaderboardResponse.body);
+
+      leaderboard.value =
+          jsonData.map((data) => LeaderboardModel.fromJson(data)).toList();
     } catch (e) {
-      if (kDebugMode) {
-        print('Error fetching leaderboard: $e');
-      }
+      REYLoaders.errorSnackBar(
+        title: "Gagal memuat peringkat",
+        message: e.toString(),
+      );
     } finally {
-      isLoading(false);
+      isLoading.value = false;
     }
   }
 }

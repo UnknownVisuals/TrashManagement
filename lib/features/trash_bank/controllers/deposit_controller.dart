@@ -1,41 +1,42 @@
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:trash_management/features/trash_bank/models/deposit_model.dart';
 import 'package:trash_management/utils/http/http_client.dart';
+import 'package:trash_management/utils/popups/loaders.dart';
 
 class DepositController extends GetxController {
-  static DepositController get instance => Get.find();
+  final REYHttpHelper httpHelper = Get.put(REYHttpHelper());
 
-  var deposit = <DepositModel>[].obs;
+  RxList<DepositModel> deposit = <DepositModel>[].obs;
+  Rx<bool> isLoading = false.obs;
 
-  String formatDateTime(DateTime dateTime) {
+  // GET Pengumpulan Sampah
+  Future<void> getDeposit({required String userId}) async {
+    isLoading.value = true;
+
+    try {
+      final depositResponse = await httpHelper.getRequest(
+        '/pengumpulan-sampah/user/$userId',
+      );
+
+      final List<dynamic> jsonData = jsonDecode(depositResponse.body);
+
+      deposit.value =
+          jsonData.map((data) => DepositModel.fromJson(data)).toList();
+    } catch (e) {
+      REYLoaders.errorSnackBar(
+        title: "Gagal memuat pengumpulan sampah",
+        message: e.toString(),
+      );
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  String formatDepositTime(DateTime dateTime) {
     final DateFormat formatter = DateFormat('dd MMMM yyyy, HH:mm');
     return formatter.format(dateTime);
-  }
-
-  Future<void> fetchDeposit(String userId) async {
-    try {
-      var depositData = await REYHttpHelper.fetchDeposit(userId);
-      deposit.assignAll(depositData);
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error fetching Deposit: $e');
-      }
-    }
-  }
-
-  Future<void> confirmDeposit(String userId, String depositId) async {
-    try {
-      var depositData = await REYHttpHelper.fetchDeposit(userId);
-      var depositToConfirm =
-          depositData.firstWhere((deposit) => deposit.id == depositId);
-      await REYHttpHelper.confirmDeposit(depositToConfirm, userId);
-      deposit.assignAll(await REYHttpHelper.fetchDeposit(userId));
-    } catch (e) {
-      if (kDebugMode) {
-        print('Error confirming Deposit: $e');
-      }
-    }
   }
 }

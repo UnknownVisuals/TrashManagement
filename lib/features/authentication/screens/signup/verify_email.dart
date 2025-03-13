@@ -43,7 +43,7 @@ class VerifyEmailScreen extends StatelessWidget {
               ),
               const SizedBox(height: REYSizes.spaceBtwItems),
               Text(
-                'support@wastemate.com',
+                'support@sobatsampah.id',
                 style: Theme.of(context).textTheme.labelLarge,
                 textAlign: TextAlign.center,
               ),
@@ -59,12 +59,14 @@ class VerifyEmailScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => Get.to(SuccessScreen(
-                    image: REYImages.staticSuccessIllustration,
-                    title: REYTexts.yourAccountCreatedTitle,
-                    subTitle: REYTexts.yourAccountCreatedSubTitle,
-                    onPressed: () => Get.offAll(const LoginScreen()),
-                  )),
+                  onPressed: () => Get.to(
+                    SuccessScreen(
+                      image: REYImages.staticSuccessIllustration,
+                      title: REYTexts.yourAccountCreatedTitle,
+                      subTitle: REYTexts.yourAccountCreatedSubTitle,
+                      onPressed: () => Get.offAll(const LoginScreen()),
+                    ),
+                  ),
                   child: const Text(REYTexts.rContinue),
                 ),
               ),

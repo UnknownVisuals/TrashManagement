@@ -19,8 +19,8 @@ class ScheduleModel {
       id: json['id'],
       desaId: json['desaId'],
       hari: json['hari'],
-      waktuMulai: DateTime.parse(json['waktuMulai']),
-      waktuSelesai: DateTime.parse(json['waktuSelesai']),
+      waktuMulai: DateTime.parse(json['waktuMulai']).toLocal(),
+      waktuSelesai: DateTime.parse(json['waktuSelesai']).toLocal(),
       desa: DesaModel.fromJson(json['desa']),
     );
   }

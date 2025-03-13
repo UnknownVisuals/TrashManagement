@@ -14,8 +14,8 @@ class AddressScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ScheduleController());
-    final desa = controller.desaInformation.firstWhere(
-      (desa) => desa.id == desaId,
+    final schedule = controller.schedule.firstWhere(
+      (schedule) => schedule.desaId == desaId,
     );
 
     return Scaffold(
@@ -43,7 +43,7 @@ class AddressScreen extends StatelessWidget {
             ),
             const SizedBox(height: REYSizes.spaceBtwItems),
             Text(
-              '${desa.nama}, ${desa.kecamatan}, ${desa.kabupaten}, ${desa.provinsi}',
+              '${schedule.desa.nama}, ${schedule.desa.kecamatan}, ${schedule.desa.kabupaten}, ${schedule.desa.provinsi}',
               style: Theme.of(context).textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),

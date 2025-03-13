@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 import 'package:trash_management/common/widgets/appbar/appbar.dart';
 import 'package:trash_management/common/widgets/section_heading.dart';
 import 'package:trash_management/features/trash_bank/screens/deposit/deposit_only.dart';

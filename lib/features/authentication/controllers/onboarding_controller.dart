@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:trash_management/features/authentication/screens/login/login.dart';
+import 'package:trash_management/utils/local_storage/storage_utility.dart';
 
 class OnBoardingController extends GetxController {
   static OnBoardingController get instance => Get.find();
@@ -9,6 +9,7 @@ class OnBoardingController extends GetxController {
   // Variables
   final pageController = PageController();
   Rx<int> currentPageIndex = 0.obs;
+  final localStorage = REYLocalStorage();
 
   // Update Current Page Index when Page Scroll
   void updatePageIndicator(index) {
@@ -28,8 +29,7 @@ class OnBoardingController extends GetxController {
   //  Update Current Index & Jump to Next Page
   void nextPage() {
     if (currentPageIndex.value == 2) {
-      final box = GetStorage();
-      box.write('hasSeenOnboarding', true);
+      localStorage.saveData('hasSeenOnboarding', true);
       Get.to(const LoginScreen());
     } else {
       int page = currentPageIndex.value + 1;
