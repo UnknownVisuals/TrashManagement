@@ -89,9 +89,10 @@ class DepositCard extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) {
                           return DepositConfirmationScreen(
-                            title: 'Konfirmasi',
-                            message: 'Batalkan setor sampah',
+                            title: 'Batalkan',
+                            message: 'Yakin membatalkan setoran sampah?',
                             depositId: id,
+                            depositValue: false,
                           );
                         },
                       );
@@ -114,6 +115,7 @@ class DepositCard extends StatelessWidget {
                             title: 'Konfirmasi',
                             message: 'Pastikan semua data sudah benar!',
                             depositId: id,
+                            depositValue: true,
                           );
                         },
                       );

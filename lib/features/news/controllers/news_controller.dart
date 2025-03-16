@@ -54,6 +54,7 @@ class NewsController extends GetxController {
       );
     } finally {
       isLoading.value = false;
+      REYHttpHelper.setBaseUrl('https://api.sobatsampah.id/api');
     }
   }
 

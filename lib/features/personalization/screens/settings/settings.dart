@@ -6,6 +6,7 @@ import 'package:trash_management/common/widgets/custom_shapes/containers/primary
 import 'package:trash_management/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:trash_management/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:trash_management/common/widgets/section_heading.dart';
+import 'package:trash_management/features/authentication/models/user_model.dart';
 import 'package:trash_management/features/authentication/screens/logout/logout.dart';
 import 'package:trash_management/features/personalization/screens/settings/address.dart';
 import 'package:trash_management/features/trash_bank/screens/deposit/deposit_only.dart';
@@ -15,17 +16,9 @@ import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/controllers/theme_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({
-    super.key,
-    required this.userId,
-    required this.username,
-    required this.email,
-    required this.desaId,
-    required this.poin,
-  });
+  const SettingsScreen({super.key, required this.userModel});
 
-  final String userId, username, email, desaId;
-  final int poin;
+  final UserModel userModel;
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +46,9 @@ class SettingsScreen extends StatelessWidget {
 
                   // Profile Card
                   REYUserProfileTile(
-                    username: username,
-                    email: email,
-                    desaId: desaId,
+                    username: userModel.username,
+                    email: userModel.email,
+                    desaId: userModel.desaId,
                   ),
                   const SizedBox(height: REYSizes.spaceBtwSections),
                 ],
@@ -78,7 +71,10 @@ class SettingsScreen extends StatelessWidget {
                     title: 'Riwayat',
                     subTitle: 'Lihat riwayat setor sampah',
                     onTap: () => Get.to(
-                      HistoryScreen(userId: userId, desaId: desaId),
+                      HistoryScreen(
+                        userId: userModel.id,
+                        desaId: userModel.desaId,
+                      ),
                     ),
                   ),
                   REYSettingsMenuTile(
@@ -86,7 +82,10 @@ class SettingsScreen extends StatelessWidget {
                     title: 'Konfirmasi',
                     subTitle: 'Konfirmasi setor sampah',
                     onTap: () => Get.to(
-                      DepositOnly(userId: userId, desaId: desaId),
+                      DepositOnly(
+                        userId: userModel.id,
+                        desaId: userModel.desaId,
+                      ),
                     ),
                   ),
                   REYSettingsMenuTile(
@@ -94,7 +93,7 @@ class SettingsScreen extends StatelessWidget {
                     title: 'Alamat Setor',
                     subTitle: 'Lihat alamat tempat setor sampah',
                     onTap: () => Get.to(
-                      AddressScreen(desaId: desaId),
+                      AddressScreen(desaId: userModel.desaId),
                     ),
                   ),
 

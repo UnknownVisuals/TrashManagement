@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:trash_management/features/trash_bank/controllers/deposit_controller.dart';
 import 'package:trash_management/features/trash_bank/screens/deposit/widgets/deposit_card.dart';
-import 'package:get/get.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
 class DepositCardList extends StatelessWidget {
@@ -19,7 +19,7 @@ class DepositCardList extends StatelessWidget {
 
     return Obx(
       () => Column(
-        spacing: REYSizes.spaceBtwItems,
+        spacing: REYSizes.spaceBtwItems / 2,
         children: controller.deposit.map((deposit) {
           return DepositCard(
             id: deposit.id,

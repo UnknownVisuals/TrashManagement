@@ -19,7 +19,7 @@ class HistoryCardList extends StatelessWidget {
 
     return Obx(
       () => Column(
-        spacing: REYSizes.spaceBtwItems,
+        spacing: REYSizes.spaceBtwItems / 2,
         children: controller.deposit.map((deposit) {
           return HistoryCard(
             desaId: deposit.desaId,

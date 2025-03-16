@@ -1,13 +1,11 @@
 class LoginModel {
-  final String email;
-  final String password;
-  final String role;
-
   LoginModel({
     required this.email,
     required this.password,
     required this.role,
   });
+
+  final String email, password, role;
 
   Map<String, dynamic> toJson() {
     return {

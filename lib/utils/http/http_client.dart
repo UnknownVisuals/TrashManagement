@@ -10,8 +10,13 @@ class REYHttpHelper extends GetConnect {
 
   // Helper method to make a GET request
   Future<Response> getRequest(String endpoint) async {
-    return await get('$_baseUrl/$endpoint')
-        .timeout(const Duration(seconds: 10));
+    return await get(
+      '$_baseUrl/$endpoint',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-user-role': 'WARGA',
+      },
+    ).timeout(const Duration(seconds: 10));
   }
 
   // Helper method to make a POST request
@@ -37,7 +42,10 @@ class REYHttpHelper extends GetConnect {
     return await patch(
       '$_baseUrl/$endpoint',
       data,
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'x-user-role': 'WARGA',
+      },
     ).timeout(const Duration(seconds: 10));
   }
 

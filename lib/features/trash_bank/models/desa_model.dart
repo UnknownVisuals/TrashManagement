@@ -1,10 +1,4 @@
 class DesaModel {
-  final String id;
-  final String nama;
-  final String kecamatan;
-  final String kabupaten;
-  final String provinsi;
-
   DesaModel({
     required this.id,
     required this.nama,
@@ -12,6 +6,8 @@ class DesaModel {
     required this.kabupaten,
     required this.provinsi,
   });
+
+  final String id, nama, kecamatan, kabupaten, provinsi;
 
   factory DesaModel.fromJson(Map<String, dynamic> json) {
     return DesaModel(

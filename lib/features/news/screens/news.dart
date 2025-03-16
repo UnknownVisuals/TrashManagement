@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trash_management/common/widgets/appbar/appbar.dart';
+import 'package:trash_management/features/authentication/models/user_model.dart';
 import 'package:trash_management/features/news/screens/widgets/news_card.dart';
 import 'package:trash_management/features/personalization/screens/profile/profile.dart';
 import 'package:trash_management/utils/constants/colors.dart';
@@ -8,17 +9,9 @@ import 'package:trash_management/utils/constants/image_strings.dart';
 import 'package:trash_management/features/news/controllers/news_controller.dart';
 
 class NewsScreen extends StatelessWidget {
-  const NewsScreen({
-    super.key,
-    required this.userId,
-    required this.username,
-    required this.email,
-    required this.desaId,
-    required this.poin,
-  });
+  const NewsScreen({super.key, required this.userModel});
 
-  final String userId, username, email, desaId;
-  final int poin;
+  final UserModel userModel;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +27,9 @@ class NewsScreen extends StatelessWidget {
           GestureDetector(
             onTap: () => Get.to(
               ProfileScreen(
-                username: username,
-                email: email,
-                desaId: desaId,
+                username: userModel.username,
+                email: userModel.email,
+                desaId: userModel.desaId,
               ),
             ),
             child: Image.asset(REYImages.user, width: 40, height: 40),

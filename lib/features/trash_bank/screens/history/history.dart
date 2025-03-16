@@ -23,10 +23,8 @@ class HistoryScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(REYSizes.defaultSpace),
-          child: HistoryCardList(userId: userId),
-        ),
+        padding: const EdgeInsets.all(REYSizes.defaultSpace),
+        child: HistoryCardList(userId: userId),
       ),
     );
   }

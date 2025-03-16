@@ -5,6 +5,7 @@ import 'package:trash_management/common/widgets/custom_shapes/containers/circula
 import 'package:trash_management/features/trash_bank/controllers/home_controller.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
+import 'deposit_tutorial_card.dart';
 
 class DepositTutorialCarousel extends StatelessWidget {
   const DepositTutorialCarousel({super.key});
@@ -14,89 +15,17 @@ class DepositTutorialCarousel extends StatelessWidget {
     final homeController = Get.put(HomeController());
 
     List<Widget> items = [
-      Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          border: Border.all(color: REYColors.borderPrimary),
-          borderRadius: BorderRadius.circular(REYSizes.borderRadiusLg),
-        ),
-        child: Column(
-          children: [
-            const Flexible(
-              flex: 4,
-              child: Image(
-                image: AssetImage("assets/onboarding/onboarding_1_alt.png"),
-              ),
-            ),
-            const SizedBox(height: REYSizes.spaceBtwItems),
-            Flexible(
-              flex: 1,
-              child: Text(
-                'Kumpulkan dan pilah sampahmu!',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ),
-          ],
-        ),
+      const DepositTutorialCard(
+        imagePath: "assets/onboarding/onboarding_1_alt.png",
+        text: 'Kumpulkan dan pilah sampahmu!',
       ),
-      Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          border: Border.all(color: REYColors.borderPrimary),
-          borderRadius: BorderRadius.circular(REYSizes.borderRadiusLg),
-        ),
-        child: Column(
-          children: [
-            const Flexible(
-              flex: 4,
-              child: Image(
-                image: AssetImage("assets/onboarding/onboarding_2_alt.png"),
-              ),
-            ),
-            const SizedBox(height: REYSizes.spaceBtwItems),
-            Flexible(
-              flex: 1,
-              child: Text(
-                'Bawa sampahmu ke bank sampah terdekat!',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ),
-          ],
-        ),
+      const DepositTutorialCard(
+        imagePath: "assets/onboarding/onboarding_2_alt.png",
+        text: 'Bawa sampahmu ke bank sampah terdekat!',
       ),
-      Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          border: Border.all(color: REYColors.borderPrimary),
-          borderRadius: BorderRadius.circular(REYSizes.borderRadiusLg),
-        ),
-        child: Column(
-          children: [
-            const Flexible(
-              flex: 4,
-              child: Image(
-                image: AssetImage("assets/onboarding/onboarding_3_alt.png"),
-              ),
-            ),
-            const SizedBox(height: REYSizes.spaceBtwItems),
-            Flexible(
-              flex: 1,
-              child: Text(
-                'Tukar sampahmu dan dapatkan poin untuk hadiah menarik!',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ),
-          ],
-        ),
+      const DepositTutorialCard(
+        imagePath: "assets/onboarding/onboarding_3_alt.png",
+        text: 'Tukar sampahmu dan dapatkan poin untuk hadiah menarik!',
       ),
     ];
 

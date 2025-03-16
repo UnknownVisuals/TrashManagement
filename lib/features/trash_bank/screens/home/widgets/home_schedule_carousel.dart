@@ -18,6 +18,7 @@ class HomeScheduleCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     final HomeController homeController = Get.put(HomeController());
     final ScheduleController scheduleController = Get.put(ScheduleController());
+    scheduleController.getSchedule(desaId: desaId);
 
     return Obx(
       () => Column(
@@ -36,54 +37,48 @@ class HomeScheduleCarousel extends StatelessWidget {
                 schedule.waktuSelesai,
               );
 
-              // TODO: Fix Schedule Card if no schedule available
-
               return DepositScheduleCard(
-                child: schedule.id.isEmpty
-                    ? const Center(
-                        child: Text('Tidak ada jadwal pengumpulan'),
-                      )
-                    : Padding(
-                        padding: const EdgeInsets.all(REYSizes.defaultSpace),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Pengumpulan Sampah',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(color: REYColors.white),
-                            ),
-                            const SizedBox(height: REYSizes.sm),
-                            Text(
-                              '${schedule.hari}, $formattedWaktu WIB',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(color: REYColors.white),
-                            ),
-                            const SizedBox(height: REYSizes.sm / 2),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Iconsax.location,
-                                  size: REYSizes.iconSm,
-                                  color: REYColors.white,
-                                ),
-                                const SizedBox(width: REYSizes.sm / 2),
-                                Text(
-                                  schedule.desa.nama,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(color: REYColors.white),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                child: Padding(
+                  padding: const EdgeInsets.all(REYSizes.defaultSpace),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Pengumpulan Sampah',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(color: REYColors.white),
                       ),
+                      const SizedBox(height: REYSizes.sm),
+                      Text(
+                        '${schedule.hari}, $formattedWaktu WIB',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(color: REYColors.white),
+                      ),
+                      const SizedBox(height: REYSizes.sm / 2),
+                      Row(
+                        children: [
+                          const Icon(
+                            Iconsax.location,
+                            size: REYSizes.iconSm,
+                            color: REYColors.white,
+                          ),
+                          const SizedBox(width: REYSizes.sm / 2),
+                          Text(
+                            schedule.desa.nama,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(color: REYColors.white),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               );
             }).toList(),
           ),

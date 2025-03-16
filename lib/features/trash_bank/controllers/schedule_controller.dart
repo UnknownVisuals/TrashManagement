@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:trash_management/features/trash_bank/models/schedule_model.dart';
@@ -18,13 +16,21 @@ class ScheduleController extends GetxController {
 
     try {
       final scheduleResponse = await httpHelper.getRequest(
-        '/jadwal-pengumpulan?desaId=$desaId',
+        'jadwal-pengumpulan?desaId=$desaId',
       );
 
-      final List<dynamic> jsonData = jsonDecode(scheduleResponse.body);
+      if (scheduleResponse.statusCode == 200) {
+        final jsonData = scheduleResponse.body;
 
-      schedule.value =
-          jsonData.map((data) => ScheduleModel.fromJson(data)).toList();
+        schedule.value = (jsonData as List)
+            .map((item) => ScheduleModel.fromJson(item))
+            .toList();
+      } else {
+        REYLoaders.errorSnackBar(
+          title: "Gagal memuat jadwal",
+          message: "Kesalahan saat memuat data jadwal",
+        );
+      }
     } catch (e) {
       REYLoaders.errorSnackBar(
         title: "Gagal memuat jadwal",

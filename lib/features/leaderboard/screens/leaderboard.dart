@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trash_management/common/widgets/appbar/appbar.dart';
+import 'package:trash_management/features/authentication/models/user_model.dart';
 import 'package:trash_management/features/leaderboard/screens/widgets/leaderboard_card.dart';
 import 'package:trash_management/features/personalization/screens/profile/profile.dart';
 import 'package:trash_management/utils/constants/colors.dart';
@@ -9,23 +10,17 @@ import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:trash_management/features/leaderboard/controllers/leaderboard_controller.dart';
 
 class LeaderboardScreen extends StatelessWidget {
-  const LeaderboardScreen({
-    super.key,
-    required this.userId,
-    required this.username,
-    required this.email,
-    required this.desaId,
-    required this.poin,
-  });
+  const LeaderboardScreen({super.key, required this.userModel});
 
-  final String userId, username, email, desaId;
-  final int poin;
+  final UserModel userModel;
 
   @override
   Widget build(BuildContext context) {
     final LeaderboardController leaderboardController = Get.put(
       LeaderboardController(),
     );
+
+    leaderboardController.getLeaderboard();
 
     return Scaffold(
       appBar: REYAppBar(
@@ -37,9 +32,9 @@ class LeaderboardScreen extends StatelessWidget {
           GestureDetector(
             onTap: () => Get.to(
               ProfileScreen(
-                username: username,
-                email: email,
-                desaId: desaId,
+                username: userModel.username,
+                email: userModel.email,
+                desaId: userModel.desaId,
               ),
             ),
             child: Image.asset(REYImages.user, width: 40, height: 40),

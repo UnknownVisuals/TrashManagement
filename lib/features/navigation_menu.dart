@@ -3,34 +3,28 @@ import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:trash_management/controllers/navigation_controller.dart';
+import 'package:trash_management/features/authentication/models/user_model.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/helpers/helper_functions.dart';
 
 class NavigationMenu extends StatelessWidget {
-  const NavigationMenu({
-    super.key,
-    required this.userId,
-    required this.email,
-    required this.username,
-    required this.desaId,
-    required this.poin,
-  });
+  const NavigationMenu({super.key, required this.userModel});
 
-  final String userId, email, username, desaId;
-  final int poin;
+  final UserModel userModel;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(
-      NavigationController(
-        userId: userId,
-        username: username,
-        email: email,
-        desaId: desaId,
-        poin: poin,
+    final controller = Get.put(NavigationController(userModel: userModel));
+    final dark = REYHelperFunctions.isDarkMode(context);
+    Get.lazyPut(
+      () => UserModel(
+        id: userModel.id,
+        email: userModel.email,
+        username: userModel.username,
+        desaId: userModel.desaId,
+        poin: userModel.poin,
       ),
     );
-    final dark = REYHelperFunctions.isDarkMode(context);
 
     return Scaffold(
       bottomNavigationBar: Obx(

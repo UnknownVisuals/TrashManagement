@@ -1,10 +1,10 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:trash_management/features/trash_bank/models/confirmation_model.dart';
 import 'package:trash_management/features/trash_bank/models/deposit_model.dart';
 import 'package:trash_management/utils/http/http_client.dart';
 import 'package:trash_management/utils/popups/loaders.dart';
+import 'package:trash_management/features/authentication/models/user_model.dart';
 
 class DepositController extends GetxController {
   final REYHttpHelper httpHelper = Get.put(REYHttpHelper());
@@ -12,22 +12,78 @@ class DepositController extends GetxController {
   RxList<DepositModel> deposit = <DepositModel>[].obs;
   Rx<bool> isLoading = false.obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+    final UserModel user = Get.find<UserModel>();
+    getDeposit(userId: user.id);
+  }
+
   // GET Pengumpulan Sampah
   Future<void> getDeposit({required String userId}) async {
     isLoading.value = true;
 
     try {
       final depositResponse = await httpHelper.getRequest(
-        '/pengumpulan-sampah/user/$userId',
+        'pengumpulan-sampah/user/$userId',
       );
 
-      final List<dynamic> jsonData = jsonDecode(depositResponse.body);
+      if (depositResponse.statusCode == 200) {
+        final jsonData = depositResponse.body;
 
-      deposit.value =
-          jsonData.map((data) => DepositModel.fromJson(data)).toList();
+        deposit.value = (jsonData as List)
+            .map((item) => DepositModel.fromJson(item))
+            .toList();
+      } else {
+        REYLoaders.errorSnackBar(
+          title: "Gagal memuat pengumpulan sampah",
+          message: "Terjadi kesalahan saat memuat data pengumpulan sampah",
+        );
+      }
     } catch (e) {
       REYLoaders.errorSnackBar(
         title: "Gagal memuat pengumpulan sampah",
+        message: e.toString(),
+      );
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  // POST Konfirmasi pengumpulan Sampah
+  Future<void> confirmDeposit({
+    required String depositId,
+    required bool depositValue,
+  }) async {
+    isLoading.value = true;
+
+    try {
+      final confirmationModel = ConfirmationModel(
+        id: depositId,
+        value: depositValue,
+      );
+
+      final confirmationResponse = await httpHelper.patchRequest(
+        'pengumpulan-sampah',
+        confirmationModel.toJson(),
+      );
+
+      Get.back();
+
+      if (confirmationResponse.statusCode == 200) {
+        REYLoaders.successSnackBar(
+          title: "Sukses mengonfirmasi pengumpulan sampah",
+          message: "Pengumpulan sampah berhasil dikonfirmasi",
+        );
+      } else {
+        REYLoaders.errorSnackBar(
+          title: "Gagal mengonfirmasi pengumpulan sampah",
+          message: "Terjadi kesalahan saat mengonfirmasi pengumpulan sampah",
+        );
+      }
+    } catch (e) {
+      REYLoaders.errorSnackBar(
+        title: "Gagal mengonfirmasi pengumpulan sampah",
         message: e.toString(),
       );
     } finally {

@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:trash_management/features/authentication/models/login_model.dart';
+import 'package:trash_management/features/authentication/models/user_model.dart';
 import 'package:trash_management/features/leaderboard/controllers/leaderboard_controller.dart';
 import 'package:trash_management/features/navigation_menu.dart';
 import 'package:trash_management/utils/http/http_client.dart';
@@ -13,6 +12,14 @@ class LoginController extends GetxController {
   Rx<bool> isLoading = false.obs;
   Rx<bool> rememberMe = false.obs;
   Rx<bool> obscurePassword = true.obs;
+
+  late Rx<UserModel> userModel = UserModel(
+    id: '',
+    email: '',
+    username: '',
+    desaId: '',
+    poin: 0,
+  ).obs;
 
   Future<void> login({
     required String email,
@@ -34,37 +41,26 @@ class LoginController extends GetxController {
       );
 
       if (loginResponse.statusCode == 200) {
-        final responseBody = jsonDecode(loginResponse.body);
-
-        final responseUserId = responseBody['user']['id'];
-        final responseEmail = responseBody['user']['email'];
-        final responseUsername = responseBody['user']['username'];
-        final responseDesaId = responseBody['user']['desaId'];
+        final responseBody = loginResponse.body;
 
         final LeaderboardController leaderboardController = Get.put(
           LeaderboardController(),
         );
 
-        RxList<dynamic> leaderboard = leaderboardController.leaderboard;
+        await leaderboardController.getLeaderboard();
 
-        final userLeaderboard = leaderboard.firstWhere(
-          (entry) => entry['userId'] == responseUserId,
-          orElse: () => {'poinSaatIni': 0},
+        final userLeaderboard = leaderboardController.leaderboard.firstWhere(
+          (entry) => entry.userId == responseBody['user']['id'],
         );
 
-        final responsePoin = userLeaderboard['poinSaatIni'];
+        final responsePoin = userLeaderboard.poinSaatIni;
 
-        REYLoaders.successSnackBar(title: 'Login Berhasil');
+        userModel.value = UserModel.fromJson({
+          ...responseBody['user'],
+          'poin': responsePoin,
+        });
 
-        Get.off(
-          NavigationMenu(
-            userId: responseUserId,
-            email: responseEmail,
-            username: responseUsername,
-            desaId: responseDesaId,
-            poin: responsePoin,
-          ),
-        );
+        Get.off(NavigationMenu(userModel: userModel.value));
       } else {
         REYLoaders.errorSnackBar(
           title: 'Login Gagal',
