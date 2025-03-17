@@ -5,9 +5,11 @@ import 'package:trash_management/features/leaderboard/controllers/leaderboard_co
 import 'package:trash_management/features/navigation_menu.dart';
 import 'package:trash_management/utils/http/http_client.dart';
 import 'package:trash_management/utils/popups/loaders.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController {
   final REYHttpHelper httpHelper = Get.put(REYHttpHelper());
+  final GetStorage storage = GetStorage();
 
   Rx<bool> isLoading = false.obs;
   Rx<bool> rememberMe = false.obs;
@@ -20,6 +22,22 @@ class LoginController extends GetxController {
     desaId: '',
     poin: 0,
   ).obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _loadUserFromStorage();
+  }
+
+  void _loadUserFromStorage() {
+    if (storage.read('rememberMe') == true) {
+      final storedUser = storage.read('user');
+      if (storedUser != null) {
+        userModel.value = UserModel.fromJson(storedUser);
+        Get.off(NavigationMenu(userModel: userModel.value));
+      }
+    }
+  }
 
   Future<void> login({
     required String email,
@@ -59,6 +77,14 @@ class LoginController extends GetxController {
           ...responseBody['user'],
           'poin': responsePoin,
         });
+
+        if (rememberMe.value) {
+          storage.write('user', userModel.value.toJson());
+          storage.write('rememberMe', true);
+        } else {
+          storage.remove('user');
+          storage.write('rememberMe', false);
+        }
 
         Get.off(NavigationMenu(userModel: userModel.value));
       } else {

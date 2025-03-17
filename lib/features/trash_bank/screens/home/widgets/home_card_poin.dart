@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:trash_management/common/widgets/icon_button.dart';
-import 'package:trash_management/features/trash_bank/screens/deposit/deposit.dart';
+import 'package:trash_management/features/trash_bank/screens/deposit_asus/deposit_asus.dart';
 import 'package:trash_management/features/trash_bank/screens/poin_exchange/poin_exchange.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
@@ -75,10 +75,18 @@ class HomeCardPoin extends StatelessWidget {
                 REYIconButton(
                   icon: Iconsax.send_2,
                   title: 'Setor\nSampah',
-                  onPressed: () => Get.to(DepositScreen(
-                    userId: userId,
-                    desaId: desaId,
-                  )),
+                  onPressed: () => Get.to(
+                    DepositAsusScreen(
+                      userId: userId,
+                      desaId: desaId,
+                    ),
+                  ),
+                  // onPressed: () => Get.to(
+                  //   DepositScreen(
+                  //     userId: userId,
+                  //     desaId: desaId,
+                  //   ),
+                  // ),
                 ),
                 const SizedBox(width: REYSizes.spaceBtwItems),
                 REYIconButton(
