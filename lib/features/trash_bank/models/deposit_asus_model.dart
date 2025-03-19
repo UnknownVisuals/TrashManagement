@@ -12,7 +12,7 @@ class DepositAsusModel {
   });
 
   final String desaId, berat, jenisSampah, rt, rw, userId;
-  final int poin;
+  final double poin;
   final DateTime waktu;
   final bool available;
 

@@ -3,6 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:trash_management/common/widgets/appbar/appbar.dart';
 import 'package:trash_management/common/widgets/section_heading.dart';
 import 'package:trash_management/features/trash_bank/screens/deposit/widgets/deposit_tutorial_carousel.dart';
+import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 import 'package:get/get.dart';
 import 'package:trash_management/features/trash_bank/controllers/deposit_asus_controller.dart';
@@ -19,18 +20,14 @@ class DepositAsusScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController jenisSampahController = TextEditingController();
-    TextEditingController beratSampahController = TextEditingController();
+    RxString jenisSampahController = ''.obs;
+    RxString beratSampahController = ''.obs;
 
-    List<Map<String, dynamic>> jenisSampahOptions = [
-      {'jenis': 'Plastik', 'poin': 10},
-      {'jenis': 'Kertas', 'poin': 5},
-      {'jenis': 'Logam', 'poin': 15},
-      {'jenis': 'Kaca', 'poin': 20},
-    ];
+    final DepositAsusController depositAsusController = Get.put(
+      DepositAsusController(),
+    );
 
-    final DepositAsusController depositAsusController =
-        Get.put(DepositAsusController());
+    depositAsusController.getWasteType();
 
     return Scaffold(
       appBar: REYAppBar(
@@ -51,74 +48,141 @@ class DepositAsusScreen extends StatelessWidget {
             // Deposit List
             const REYSectionHeading(title: 'Setor Sampah'),
             const SizedBox(height: REYSizes.spaceBtwItems),
-            Form(
-              child: Column(
-                children: [
-                  // Jenis Sampah
-                  DropdownButtonFormField<String>(
-                    value: jenisSampahController.text.isEmpty
-                        ? null
-                        : jenisSampahController.text,
-                    items: jenisSampahOptions.map((option) {
-                      return DropdownMenuItem<String>(
-                        value: option['jenis'],
-                        child: Text(option['jenis']),
-                      );
-                    }).toList(),
-                    onChanged: (newValue) {
-                      jenisSampahController.text = newValue!;
-                    },
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Iconsax.trash),
-                      labelText: 'Jenis Sampah',
-                    ),
-                  ),
 
-                  const SizedBox(height: REYSizes.spaceBtwInputFields),
+            Obx(() {
+              if (depositAsusController.isLoading.value) {
+                return const CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation(REYColors.primary),
+                );
+              }
 
-                  // Berat Sampah
-                  TextFormField(
-                    controller: beratSampahController,
-                    keyboardType:
-                        const TextInputType.numberWithOptions(decimal: true),
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Iconsax.weight),
-                      labelText: 'Berat Sampah (kg)',
-                    ),
-                  ),
-
-                  const SizedBox(height: REYSizes.spaceBtwItems),
-                  const Divider(),
-                  const SizedBox(height: REYSizes.spaceBtwItems),
-
-                  // Submit Button
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        final selectedOption = jenisSampahOptions.firstWhere(
-                          (option) =>
-                              option['jenis'] == jenisSampahController.text,
+              return Form(
+                child: Column(
+                  children: [
+                    // Jenis Sampah
+                    DropdownButtonFormField<String>(
+                      value: jenisSampahController.value.isEmpty
+                          ? null
+                          : jenisSampahController.value,
+                      items: depositAsusController.wasteType.map((wasteType) {
+                        return DropdownMenuItem<String>(
+                          value: wasteType.name,
+                          alignment: AlignmentDirectional.center,
+                          child: Text(
+                            wasteType.name,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
                         );
-                        final depositAsusModel = DepositAsusModel(
-                          desaId: desaId,
-                          berat: beratSampahController.text,
-                          jenisSampah: jenisSampahController.text,
-                          poin: selectedOption['poin'],
-                          waktu: DateTime.now(),
-                          rt: '00', // Assuming rt is provided elsewhere
-                          rw: '00', // Assuming rw is provided elsewhere
-                          userId: userId,
-                          available: true,
-                        );
-                        depositAsusController.postDeposit(depositAsusModel);
+                      }).toList(),
+                      onChanged: (newValue) {
+                        jenisSampahController.value = newValue!;
+                        depositAsusController.update();
                       },
-                      child: const Text('Submit'),
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(Iconsax.trash),
+                        labelText: 'Jenis Sampah',
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
+
+                    const SizedBox(height: REYSizes.spaceBtwInputFields),
+
+                    // Berat Sampah
+                    TextFormField(
+                      initialValue: beratSampahController.value,
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(Iconsax.weight),
+                        labelText: 'Berat Sampah (kg)',
+                      ),
+                      onChanged: (value) {
+                        beratSampahController.value = value;
+                        depositAsusController.update();
+                      },
+                    ),
+
+                    const SizedBox(height: REYSizes.spaceBtwItems),
+                    const Divider(),
+
+                    // Price Calculation
+                    Obx(() {
+                      if (jenisSampahController.value.isEmpty ||
+                          beratSampahController.value.isEmpty) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '    Total harga:',
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                            Text(
+                              '-    ',
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ],
+                        );
+                      }
+
+                      final selectedOption =
+                          depositAsusController.wasteType.firstWhere(
+                        (option) => option.name == jenisSampahController.value,
+                      );
+                      final berat =
+                          double.tryParse(beratSampahController.value) ?? 0;
+                      final harga = selectedOption.pricePerKg * berat;
+
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '    Total harga:',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          Text(
+                            'Rp ${harga.toStringAsFixed(2)}    ',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        ],
+                      );
+                    }),
+
+                    const Divider(),
+                    const SizedBox(height: REYSizes.spaceBtwItems),
+
+                    // Submit Button
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          final selectedOption =
+                              depositAsusController.wasteType.firstWhere(
+                            (option) =>
+                                option.name == jenisSampahController.value,
+                          );
+                          final berat =
+                              double.tryParse(beratSampahController.value) ?? 0;
+                          final harga = selectedOption.pricePerKg * berat;
+
+                          final depositAsusModel = DepositAsusModel(
+                            desaId: desaId,
+                            berat: beratSampahController.value,
+                            jenisSampah: jenisSampahController.value,
+                            poin: harga,
+                            waktu: DateTime.now(),
+                            rt: '00',
+                            rw: '00',
+                            userId: userId,
+                            available: true,
+                          );
+                          depositAsusController.postDeposit(depositAsusModel);
+                        },
+                        child: const Text('Kumpulkan'),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
           ],
         ),
       ),

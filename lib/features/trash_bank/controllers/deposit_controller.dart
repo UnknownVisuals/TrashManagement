@@ -37,7 +37,7 @@ class DepositController extends GetxController {
       } else {
         REYLoaders.errorSnackBar(
           title: "Gagal memuat pengumpulan sampah",
-          message: "Terjadi kesalahan saat memuat data pengumpulan sampah",
+          message: "Kesalahan saat memuat data pengumpulan sampah",
         );
       }
     } catch (e) {
