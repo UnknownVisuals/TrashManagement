@@ -24,7 +24,10 @@ class REYHttpHelper extends GetConnect {
     return await post(
       '$_baseUrl/$endpoint',
       data,
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'x-user-role': 'ADMIN',
+      },
     ).timeout(const Duration(seconds: 10));
   }
 

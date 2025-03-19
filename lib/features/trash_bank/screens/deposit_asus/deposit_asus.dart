@@ -12,11 +12,12 @@ import 'package:trash_management/features/trash_bank/models/deposit_asus_model.d
 class DepositAsusScreen extends StatelessWidget {
   const DepositAsusScreen({
     super.key,
+    required this.username,
     required this.userId,
     required this.desaId,
   });
 
-  final String userId, desaId;
+  final String username, userId, desaId;
 
   @override
   Widget build(BuildContext context) {
@@ -164,8 +165,9 @@ class DepositAsusScreen extends StatelessWidget {
                           final harga = selectedOption.pricePerKg * berat;
 
                           final depositAsusModel = DepositAsusModel(
+                            username: username,
                             desaId: desaId,
-                            berat: beratSampahController.value,
+                            berat: berat,
                             jenisSampah: jenisSampahController.value,
                             poin: harga,
                             waktu: DateTime.now(),
@@ -173,7 +175,9 @@ class DepositAsusScreen extends StatelessWidget {
                             rw: '00',
                             userId: userId,
                             available: true,
+                            wasteTypeId: selectedOption.id,
                           );
+
                           depositAsusController.postDeposit(depositAsusModel);
                         },
                         child: const Text('Kumpulkan'),

@@ -10,12 +10,13 @@ import 'package:trash_management/utils/constants/sizes.dart';
 class HomeCardPoin extends StatelessWidget {
   const HomeCardPoin({
     super.key,
+    required this.username,
     required this.poin,
     required this.userId,
     required this.desaId,
   });
 
-  final String poin, userId, desaId;
+  final String username, poin, userId, desaId;
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +78,7 @@ class HomeCardPoin extends StatelessWidget {
                   title: 'Setor\nSampah',
                   onPressed: () => Get.to(
                     DepositAsusScreen(
+                      username: username,
                       userId: userId,
                       desaId: desaId,
                     ),

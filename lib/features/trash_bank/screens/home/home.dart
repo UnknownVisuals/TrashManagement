@@ -32,6 +32,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: REYSizes.spaceBtwSections),
                   HomeCardPoin(
+                    username: userModel.username,
                     poin: userModel.poin.toString(),
                     userId: userModel.id,
                     desaId: userModel.desaId,

@@ -20,7 +20,7 @@ class DepositAsusController extends GetxController {
         depositAsusModel.toJson(),
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         REYLoaders.successSnackBar(
           title: "Sukses menyetor sampah",
           message: "Data sampah berhasil disetor",
