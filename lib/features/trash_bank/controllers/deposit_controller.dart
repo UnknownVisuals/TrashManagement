@@ -4,20 +4,12 @@ import 'package:trash_management/features/trash_bank/models/confirmation_model.d
 import 'package:trash_management/features/trash_bank/models/deposit_model.dart';
 import 'package:trash_management/utils/http/http_client.dart';
 import 'package:trash_management/utils/popups/loaders.dart';
-import 'package:trash_management/features/authentication/models/user_model.dart';
 
 class DepositController extends GetxController {
   final REYHttpHelper httpHelper = Get.put(REYHttpHelper());
 
   RxList<DepositModel> deposit = <DepositModel>[].obs;
   Rx<bool> isLoading = false.obs;
-
-  @override
-  void onInit() {
-    super.onInit();
-    final UserModel user = Get.find<UserModel>();
-    getDeposit(userId: user.id);
-  }
 
   // GET Pengumpulan Sampah
   Future<void> getDeposit({required String userId}) async {

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:trash_management/features/authentication/controllers/user_controller.dart';
 import 'package:trash_management/features/trash_bank/models/deposit_asus_model.dart';
 import 'package:trash_management/features/trash_bank/models/waste_type_model.dart';
 import 'package:trash_management/utils/http/http_client.dart';
@@ -25,6 +26,8 @@ class DepositAsusController extends GetxController {
           title: "Sukses menyetor sampah",
           message: "Data sampah berhasil disetor",
         );
+        final UserController userController = Get.find();
+        await userController.refreshUserPoin(depositAsusModel.userId);
       } else {
         REYLoaders.errorSnackBar(
           title: "Gagal menyetor sampah",

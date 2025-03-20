@@ -8,7 +8,7 @@ class UserModel {
   });
 
   final String id, email, username, desaId;
-  final int poin;
+  late int poin;
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(

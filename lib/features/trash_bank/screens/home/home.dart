@@ -9,6 +9,7 @@ import 'package:trash_management/features/trash_bank/screens/home/widgets/home_a
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_card_poin.dart';
 import 'package:trash_management/features/trash_bank/screens/home/widgets/home_schedule_carousel.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
+import 'package:trash_management/utils/device/device_utility.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key, required this.userModel});
@@ -18,57 +19,57 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Header
-            REYPrimaryHeaderContainer(
-              child: Column(
-                children: [
-                  HomeAppBar(
-                    username: userModel.username,
-                    userId: userModel.id,
-                    desaId: userModel.desaId,
-                  ),
-                  const SizedBox(height: REYSizes.spaceBtwSections),
-                  HomeCardPoin(
-                    username: userModel.username,
-                    poin: userModel.poin.toString(),
-                    userId: userModel.id,
-                    desaId: userModel.desaId,
-                  ),
-                  const SizedBox(height: REYSizes.spaceBtwSections * 2),
-                ],
-              ),
+      body: Column(
+        children: [
+          // Header
+          REYPrimaryHeaderContainer(
+            child: Column(
+              children: [
+                HomeAppBar(
+                  username: userModel.username,
+                  userId: userModel.id,
+                  desaId: userModel.desaId,
+                ),
+                const SizedBox(height: REYSizes.spaceBtwSections),
+                HomeCardPoin(
+                  username: userModel.username,
+                  userId: userModel.id,
+                  desaId: userModel.desaId,
+                ),
+                const SizedBox(height: REYSizes.spaceBtwSections * 2),
+              ],
             ),
+          ),
 
-            // Body
-            Padding(
-              padding: const EdgeInsets.all(REYSizes.defaultSpace),
-              child: Column(
-                children: [
-                  // Schedule Carousel
-                  HomeScheduleCarousel(desaId: userModel.desaId),
+          // Body
+          Padding(
+            padding: const EdgeInsets.all(REYSizes.defaultSpace),
+            child: Column(
+              children: [
+                // Schedule Carousel
+                HomeScheduleCarousel(desaId: userModel.desaId),
 
-                  // History
-                  REYSectionHeading(
-                    title: 'Riwayat',
-                    showActionButton: true,
-                    onPressed: () => Get.to(
-                      HistoryScreen(
-                        userId: userModel.id,
-                        desaId: userModel.desaId,
-                      ),
+                // History
+                REYSectionHeading(
+                  title: 'Riwayat',
+                  showActionButton: true,
+                  onPressed: () => Get.to(
+                    HistoryScreen(
+                      userId: userModel.id,
+                      desaId: userModel.desaId,
                     ),
                   ),
-                  SingleChildScrollView(
+                ),
+                SizedBox(
+                  height: REYDeviceUtils.getScreenHeight() * 0.5,
+                  child: SingleChildScrollView(
                     child: HistoryCardList(userId: userModel.id),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -40,10 +40,10 @@ class REYNotificationCounterIcon extends StatelessWidget {
                   child: Center(
                     child: Text(
                       availableCount.toString(),
-                      style: Theme.of(context).textTheme.labelLarge!.apply(
-                            color: REYColors.white,
-                            fontSizeFactor: 0.8,
-                          ),
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge!
+                          .apply(color: REYColors.white, fontSizeFactor: 0.8),
                     ),
                   ),
                 ),
