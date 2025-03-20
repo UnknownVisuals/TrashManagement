@@ -21,7 +21,6 @@ class NewsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    REYHttpHelper.setBaseUrl('https://newsapi.org/v2');
     getNews();
   }
 
@@ -29,10 +28,11 @@ class NewsController extends GetxController {
     if (isLoading.value) return;
     isLoading.value = true;
 
+    REYHttpHelper.setBaseUrl('https://newsapi.org/v2');
+
     try {
       final newsResponse = await httpHelper.getRequest(
-        "everything?q=sampah%20OR%20lingkungan&language=id&page=$page&pageSize=$pageSize&apiKey=${dotenv.env['NEWS_API_KEY']}",
-      );
+          "everything?q=sampah&language=id&page=$page&pageSize=$pageSize&apiKey=${dotenv.env['NEWS_API_KEY']}");
 
       if (newsResponse.statusCode == 200 &&
           newsResponse.body['articles'] != null) {
@@ -42,10 +42,17 @@ class NewsController extends GetxController {
 
         if (fetchedNews.length < pageSize) {
           hasMore.value = false;
+        } else {
+          hasMore.value = true;
         }
 
         newsList.addAll(fetchedNews);
         page++;
+      } else {
+        REYLoaders.errorSnackBar(
+          title: "Gagal memuat berita",
+          message: "Error ${newsResponse.statusCode}: ${newsResponse.body}",
+        );
       }
     } catch (e) {
       REYLoaders.errorSnackBar(
