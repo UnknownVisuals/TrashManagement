@@ -17,15 +17,18 @@ class DepositTutorialCarousel extends StatelessWidget {
     List<Widget> items = [
       const DepositTutorialCard(
         imagePath: "assets/onboarding/onboarding_1_alt.png",
-        text: 'Kumpulkan dan pilah sampahmu!',
+        text: 'Pilah sampah yang terkumpul!',
+        // text: 'Kumpulkan dan pilah sampahmu!',
       ),
       const DepositTutorialCard(
         imagePath: "assets/onboarding/onboarding_2_alt.png",
-        text: 'Bawa sampahmu ke bank sampah terdekat!',
+        text: 'Catat semua jenis sampah pada aplikasi....',
+        // text: 'Bawa sampahmu ke bank sampah terdekat!',
       ),
       const DepositTutorialCard(
         imagePath: "assets/onboarding/onboarding_3_alt.png",
-        text: 'Tukar sampahmu dan dapatkan poin untuk hadiah menarik!',
+        text: 'Saldo akan bertambah setelah dikumpulkan!',
+        // text: 'Tukar sampahmu dan dapatkan poin untuk hadiah menarik!',
       ),
     ];
 
@@ -34,7 +37,7 @@ class DepositTutorialCarousel extends StatelessWidget {
         children: [
           CarouselSlider(
             options: CarouselOptions(
-              aspectRatio: 1 / 1,
+              aspectRatio: 4 / 3,
               viewportFraction: 1,
               autoPlay: true,
               enlargeCenterPage: true,

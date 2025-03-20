@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
 import 'package:trash_management/common/widgets/icon_button.dart';
 import 'package:trash_management/features/trash_bank/screens/deposit_asus/deposit_asus.dart';
-import 'package:trash_management/features/trash_bank/screens/poin_exchange/poin_exchange.dart';
 import 'package:trash_management/utils/constants/colors.dart';
 import 'package:trash_management/utils/constants/sizes.dart';
 
@@ -40,33 +40,37 @@ class HomeCardPoin extends StatelessWidget {
                   'Saldo',
                   style: Theme.of(context)
                       .textTheme
-                      .bodyMedium!
+                      .titleLarge!
                       .copyWith(color: REYColors.white),
                 ),
                 Text(
-                  poin,
+                  NumberFormat.currency(
+                    locale: 'id',
+                    symbol: 'Rp',
+                    decimalDigits: 0,
+                  ).format(int.parse(poin)),
                   style: Theme.of(context)
                       .textTheme
                       .headlineLarge!
                       .copyWith(color: REYColors.white),
                 ),
-                Row(
-                  children: [
-                    const Icon(
-                      Iconsax.coin_1,
-                      size: REYSizes.iconSm,
-                      color: REYColors.white,
-                    ),
-                    const SizedBox(width: REYSizes.sm / 2),
-                    Text(
-                      'Poin',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(color: REYColors.white),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     const Icon(
+                //       Iconsax.coin_1,
+                //       size: REYSizes.iconSm,
+                //       color: REYColors.white,
+                //     ),
+                //     const SizedBox(width: REYSizes.sm / 2),
+                //     Text(
+                //       'Poin',
+                //       style: Theme.of(context)
+                //           .textTheme
+                //           .bodyMedium!
+                //           .copyWith(color: REYColors.white),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
 
@@ -90,12 +94,12 @@ class HomeCardPoin extends StatelessWidget {
                   //   ),
                   // ),
                 ),
-                const SizedBox(width: REYSizes.spaceBtwItems),
-                REYIconButton(
-                  icon: Iconsax.bitcoin_convert,
-                  title: 'Tukar\nPoin',
-                  onPressed: () => Get.to(const PoinExchangeScreen()),
-                ),
+                // const SizedBox(width: REYSizes.spaceBtwItems),
+                // REYIconButton(
+                //   icon: Iconsax.bitcoin_convert,
+                //   title: 'Tukar\nPoin',
+                //   onPressed: () => Get.to(const PoinExchangeScreen()),
+                // ),
               ],
             ),
           ],

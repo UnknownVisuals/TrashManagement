@@ -44,7 +44,7 @@ class NavigationMenu extends StatelessWidget {
           tabBackgroundColor: REYColors.primary.withValues(alpha: 0.1),
           tabs: const [
             GButton(icon: Iconsax.home, text: 'Beranda'),
-            GButton(icon: Iconsax.award, text: 'Peringkat'),
+            // GButton(icon: Iconsax.award, text: 'Peringkat'),
             GButton(icon: Iconsax.global, text: 'Berita'),
             GButton(icon: Iconsax.user, text: 'Profil'),
           ],

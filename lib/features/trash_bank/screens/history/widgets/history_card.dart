@@ -61,19 +61,20 @@ class HistoryCard extends StatelessWidget {
                 ),
                 const SizedBox(height: REYSizes.spaceBtwItems / 4),
                 Text(
-                  'RT${rt.padLeft(2, '0')}/RW${rw.padLeft(2, '0')}',
-                  style: Theme.of(context).textTheme.labelMedium,
+                  'Rp $poin',
+                  // 'RT${rt.padLeft(2, '0')}/RW${rw.padLeft(2, '0')}',
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
               ],
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 REYIconButton(
-                  icon: Iconsax.coin_1,
-                  title: poin.toString(),
-                  color: dark ? REYColors.white : REYColors.black,
+                  icon: Iconsax.archive_add,
+                  title: '',
+                  color: dark ? REYColors.lightGrey : REYColors.darkGrey,
                 ),
               ],
             ),

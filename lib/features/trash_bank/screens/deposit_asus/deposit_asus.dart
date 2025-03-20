@@ -23,6 +23,8 @@ class DepositAsusScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     RxString jenisSampahController = ''.obs;
     RxString beratSampahController = ''.obs;
+    // RxString tpsRTController = ''.obs;
+    // RxString lokasiRWController = ''.obs;
 
     final DepositAsusController depositAsusController = Get.put(
       DepositAsusController(),
@@ -101,6 +103,36 @@ class DepositAsusScreen extends StatelessWidget {
                         depositAsusController.update();
                       },
                     ),
+
+                    // const SizedBox(height: REYSizes.spaceBtwInputFields),
+
+                    // // TPS
+                    // TextFormField(
+                    //   initialValue: tpsRTController.value,
+                    //   decoration: const InputDecoration(
+                    //     prefixIcon: Icon(Iconsax.box),
+                    //     labelText: 'TPS',
+                    //   ),
+                    //   onChanged: (value) {
+                    //     tpsRTController.value = value;
+                    //     depositAsusController.update();
+                    //   },
+                    // ),
+
+                    // const SizedBox(height: REYSizes.spaceBtwInputFields),
+
+                    // // Lokasi
+                    // TextFormField(
+                    //   initialValue: lokasiRWController.value,
+                    //   decoration: const InputDecoration(
+                    //     prefixIcon: Icon(Iconsax.location),
+                    //     labelText: 'Lokasi',
+                    //   ),
+                    //   onChanged: (value) {
+                    //     lokasiRWController.value = value;
+                    //     depositAsusController.update();
+                    //   },
+                    // ),
 
                     const SizedBox(height: REYSizes.spaceBtwItems),
                     const Divider(),
